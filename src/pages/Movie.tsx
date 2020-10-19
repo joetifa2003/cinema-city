@@ -59,6 +59,7 @@ const Movie = () => {
         >
           <iframe
             src="https://uqload.com/embed-e3t2uyazwvqi.html"
+            title="IFRAME"
             frameBorder="0"
             allowFullScreen
             scrolling="no"
