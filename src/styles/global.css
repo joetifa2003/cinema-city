@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  html,
+  body {
+    @apply w-full h-full bg-bg;
+  }
+
+  #root {
+    @apply h-full;
+    padding-top: 85px;
+  }
+
+  @screen md {
+    #root {
+      padding-top: 61px;
+    }
+  }
+
+  .container {
+    @apply px-5 mx-auto;
+  }
+
+  @screen md {
+    .container {
+      padding: 0;
+    }
+  }
+
+  .underline-title {
+    @apply inline-block text-3xl font-bold border-b-4 border-black;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  *::-webkit-search-cancel-button {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,80 @@
+import React, { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useParams } from "react-router-dom";
+import { db } from "../firebase";
+import MovieInterface from "../models/Movie";
+
+interface ParamTypes {
+  id: string;
+}
+
+const Movie = () => {
+  const { id } = useParams<ParamTypes>();
+
+  const [movie, setMovie] = useState<MovieInterface>();
+
+  useEffect(() => {
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        const { name, img, year, desc }: any = doc.data();
+        setMovie({
+          name,
+          img,
+          year,
+          desc,
+        });
+      });
+  });
+
+  return (
+    <div className="container min-h-full p-5 text-white bg-primary">
+      {movie ? (
+        <div className="flex">
+          <div className="me-5">
+            <LazyLoadImage
+              alt={movie?.name}
+              effect="blur"
+              src={movie?.img}
+              style={{ minWidth: "350px" }}
+            />
+            <button className="w-full p-5 text-white bg-green-600 ripple-bg-green-900">
+              Watch now
+            </button>
+          </div>
+          <div>
+            <div className="text-3xl font-bold">{movie?.name}</div>
+            <p className="font-bold">{movie?.desc}</p>
+          </div>
+        </div>
+      ) : null}
+      <div className="overflow-hidden">
+        <div
+          style={{
+            position: "relative",
+            paddingTop: "56.25%",
+            overflow: "hidden",
+          }}
+        >
+          <iframe
+            src="https://uqload.com/embed-e3t2uyazwvqi.html"
+            frameBorder="0"
+            allowFullScreen
+            scrolling="no"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              overflow: "hidden",
+            }}
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Movie;

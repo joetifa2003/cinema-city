@@ -10,16 +10,23 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "aos": "^3.0.0-beta.6",
+    "firebase": "^7.24.0",
+    "lodash": "^4.17.20",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-lazy-load-image-component": "^1.5.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "sweetalert2": "^10.6.1",
+    "tailwindcss-gap": "^7.0.0",
+    "tailwindcss-ripple": "^0.5.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +42,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.7.0",
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "@types/aos": "^3.0.3",
+    "@types/lodash": "^4.14.162",
+    "@types/react-lazy-load-image-component": "^1.5.1",
+    "@types/react-router-dom": "^5.1.6",
+    "autoprefixer": "^10.0.1",
+    "postcss-nested": "^5.0.1",
+    "tailwindcss": "^1.9.4",
+    "tailwindcss-rtl": "^0.6.0"
   }
 }
