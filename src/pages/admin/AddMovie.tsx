@@ -9,6 +9,7 @@ const AddMovie = () => {
   const [img, setImage] = useState("");
   const [year, setYear] = useState("");
   const [desc, setDesc] = useState("");
+  const [serverLink, setServerLink] = useState("");
 
   const getQueryArray = (query: string) => {
     const querySplited = query.split(" ");
@@ -35,6 +36,7 @@ const AddMovie = () => {
         img,
         year,
         desc,
+        server_link: serverLink,
       })
       .then(
         () => {
@@ -44,7 +46,7 @@ const AddMovie = () => {
             "success"
           );
         },
-        (error) => {
+        (error: any) => {
           Swal.fire(`Error!`, `Error ${error}`, "error");
         }
       );
@@ -84,6 +86,14 @@ const AddMovie = () => {
                 label="Descreption"
                 onChange={(event) => {
                   setDesc(event.target.value);
+                }}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <TextArea
+                label="Video server link"
+                onChange={(event) => {
+                  setServerLink(event.target.value);
                 }}
               />
             </div>

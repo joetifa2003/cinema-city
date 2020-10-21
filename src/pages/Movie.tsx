@@ -18,12 +18,13 @@ const Movie = () => {
       .doc(id)
       .get()
       .then((doc) => {
-        const { name, img, year, desc }: any = doc.data();
+        const { name, img, year, desc, server_link }: any = doc.data();
         setMovie({
           name,
           img,
           year,
           desc,
+          server_link,
         });
       });
   });
@@ -58,7 +59,7 @@ const Movie = () => {
           }}
         >
           <iframe
-            src="https://uqload.com/embed-e3t2uyazwvqi.html"
+            src={`${movie?.server_link}`}
             title="IFRAME"
             frameBorder="0"
             allowFullScreen

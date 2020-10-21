@@ -3,7 +3,8 @@ interface MovieInterface {
   name?: string,
   img?: string,
   year?: number,
-  desc?: string
+  desc?: string,
+  server_link?: string,
 }
 
 
