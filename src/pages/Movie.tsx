@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
 import MovieInterface from "../models/Movie";
@@ -34,16 +33,19 @@ const Movie = () => {
       <div className="container min-h-full p-5 text-white bg-primary">
         {movie ? (
           <>
-            <div className="flex">
-              <div className="me-5" data-aos="fade-up">
-                <LazyLoadImage
+            <div className="flex flex-col mb-5 md:flex-row">
+              <div
+                className="flex justify-center mb-5 me-5 md:mb-0"
+                data-aos="fade-up"
+              >
+                <img
+                  loading="lazy"
                   alt={movie?.name}
-                  effect="blur"
-                  src={movie?.img}
-                  style={{ minWidth: "350px", width: "350px" }}
+                  src={movie?.img as string}
+                  className="w-64 min-w-64"
                 />
               </div>
-              <div>
+              <div className="w-full p-5 rounded-xl bg-primary-shades-600">
                 <div data-aos="fade-up" className="text-3xl font-bold">
                   {movie?.name}
                 </div>

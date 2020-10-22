@@ -391,6 +391,7 @@ module.exports = {
       decimal: "decimal",
     },
     margin: (theme, { negative }) => ({
+      "0": "0",
       auto: "auto",
       ...theme("spacing"),
       ...negative(theme("spacing")),
@@ -414,15 +415,17 @@ module.exports = {
       full: "100%",
       ...breakpoints(theme("screens")),
     }),
-    minHeight: {
+    minHeight: (theme) => ({
+      ...theme("spacing"),
       0: "0",
       full: "100%",
       screen: "100vh",
-    },
-    minWidth: {
+    }),
+    minWidth: (theme) => ({
+      ...theme("spacing"),
       0: "0",
       full: "100%",
-    },
+    }),
     objectPosition: {
       bottom: "bottom",
       center: "center",

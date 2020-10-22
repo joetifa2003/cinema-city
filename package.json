@@ -15,9 +15,8 @@
     "lodash": "^4.17.20",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-lazy-load-image-component": "^1.5.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "react-spring": "^8.0.27",
     "sweetalert2": "^10.6.1",
     "tailwindcss-gap": "^7.0.0",
@@ -32,18 +31,11 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    "since 2010",
+    "ie 11",
+    "ie 8"
+  ],
   "devDependencies": {
     "@craco/craco": "^5.7.0",
     "@tailwindcss/custom-forms": "^0.2.1",
@@ -51,7 +43,7 @@
     "@types/lodash": "^4.14.162",
     "@types/react-lazy-load-image-component": "^1.5.1",
     "@types/react-router-dom": "^5.1.6",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^9.8.6",
     "postcss-nested": "^5.0.1",
     "tailwindcss": "^1.9.4",
     "tailwindcss-rtl": "^0.6.0"

@@ -3,7 +3,7 @@ import Hero from "../components/Hero/Hero";
 import MovieItem from "../components/Items/MovieItem";
 import debounce from "lodash/debounce";
 import { db } from "../firebase";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated, config } from "react-spring";
 import MovieInterface from "../models/Movie";
 
 const Home = () => {
@@ -39,9 +39,7 @@ const Home = () => {
   }, [searchString]);
 
   const movieTransition = useTransition(movies, (movie) => movie?.id as any, {
-    config: {
-      duration: 250,
-    },
+    config: config.stiff,
     from: {
       opacity: 0,
       transform: "rotateY(90deg)",
@@ -61,9 +59,9 @@ const Home = () => {
       <Hero />
       <div className="container h-full">
         <div className="h-full">
-          <div className="flex justify-between">
+          <div className="flex flex-wrap justify-between">
             <div className="mb-5 underline-title">الافلام</div>
-            <div className="w-full md:w-1/3">
+            <div className="w-full mb-5 md:w-1/3 md:mb-0">
               <div className="relative flex items-center w-full p-2 border-2 border-black">
                 <i
                   className="w-6 h-6 me-2 iconify"
@@ -85,7 +83,7 @@ const Home = () => {
                 <animated.div
                   key={key}
                   style={props}
-                  className="w-1/3 md:1/4 lg:w-1/6"
+                  className="w-1/2 md:1/4 lg:w-1/6"
                 >
                   <MovieItem
                     id={item.id}

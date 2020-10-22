@@ -12,7 +12,7 @@
 
   #root {
     @apply h-full;
-    padding-top: 85px;
+    padding-top: 125px;
   }
 
   @screen md {

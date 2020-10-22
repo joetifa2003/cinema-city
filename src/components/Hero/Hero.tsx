@@ -4,7 +4,7 @@ import "./Hero.css";
 const Hero = () => {
   return (
     <div className="relative flex flex-col items-center justify-center w-full mb-8 h-8/12 bg-primary">
-      <div className="custom-shape-divider-bottom-1603030511">
+      <div className="hidden custom-shape-divider-bottom-1603030511 md:block">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -18,16 +18,19 @@ const Hero = () => {
         </svg>
       </div>
       <div className="container">
-        <h1 data-aos="fade-up" className="text-5xl font-bold text-white">
+        <h1
+          data-aos="fade-up"
+          className="mb-4 text-3xl font-bold text-white md:text-5xl"
+        >
           اهلا بكم في سينما سيتي
         </h1>
         <p
           data-aos="fade-up"
           data-aos-delay="150"
-          className="text-3xl font-bold text-white"
+          className="text-xl font-bold text-white md:text-3xl"
         >
-          يمكنكم مشاهدة جميع الافلام و المسلسلات بجوده عالية و <br />
-          مترجمة اللي اللغة العربية
+          يمكنكم مشاهدة جميع الافلام و المسلسلات بجوده عالية و مترجمة اللي اللغة
+          العربية
         </p>
       </div>
     </div>

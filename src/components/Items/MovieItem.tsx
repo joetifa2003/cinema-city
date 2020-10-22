@@ -1,5 +1,4 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router-dom";
 
 const MovieItem = ({ img, name, year, id }: any) => {
@@ -13,12 +12,14 @@ const MovieItem = ({ img, name, year, id }: any) => {
           history.push(`/movie/${id}`);
         }}
       >
-        <LazyLoadImage
+        <img
+          loading="lazy"
+          height="auto"
           alt="Movie 1 (2020)"
           src={img}
           className="rounded-lg shadow-xl"
         />
-        <div className="font-bold text-center">{`${name} (${year})`}</div>
+        <div className="mt-auto font-bold text-center">{`${name} (${year})`}</div>
       </div>
     </div>
   );

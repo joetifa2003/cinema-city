@@ -1,15 +1,14 @@
 module.exports = {
   style: {
-    modules: {
-
-    },
+    modules: {},
     css: {
-      loaderOptions: {
-
-      }
+      loaderOptions: {},
     },
     postcss: {
-      plugins: [require("tailwindcss")("./tailwind.config.js")],
+      plugins: [
+        require("tailwindcss")("./tailwind.config.js"),
+        require("autoprefixer"),
+      ],
     },
   },
 };
