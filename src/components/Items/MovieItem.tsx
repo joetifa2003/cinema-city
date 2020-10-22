@@ -6,7 +6,7 @@ const MovieItem = ({ img, name, year, id }: any) => {
   const history = useHistory();
 
   return (
-    <div data-aos="flip-left" className="w-1/3 md:1/4 lg:w-1/6">
+    <div className="">
       <div
         className="transition-all duration-500 transform cursor-pointer hover:scale-110"
         onClick={() => {
@@ -15,7 +15,6 @@ const MovieItem = ({ img, name, year, id }: any) => {
       >
         <LazyLoadImage
           alt="Movie 1 (2020)"
-          effect="blur"
           src={img}
           className="rounded-lg shadow-xl"
         />
@@ -25,4 +24,4 @@ const MovieItem = ({ img, name, year, id }: any) => {
   );
 };
 
-export default MovieItem;
+export default React.memo(MovieItem);

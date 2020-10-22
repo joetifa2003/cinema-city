@@ -3,9 +3,11 @@ import Hero from "../components/Hero/Hero";
 import MovieItem from "../components/Items/MovieItem";
 import debounce from "lodash/debounce";
 import { db } from "../firebase";
+import { useTransition, animated } from "react-spring";
+import MovieInterface from "../models/Movie";
 
 const Home = () => {
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<MovieInterface[]>([]);
   const [searchString, setSearchString] = useState("");
   const setSearchStringLazy = debounce((value) => {
     setSearchString(value);
@@ -17,7 +19,11 @@ const Home = () => {
         .where("name_query", "array-contains", searchString.toLocaleLowerCase())
         .get()
         .then((snapshot) => {
-          setMovies(snapshot.docs.map((doc) => doc.data()));
+          setMovies(
+            snapshot.docs.map((doc) =>
+              Object.assign(doc.data(), { id: doc.id })
+            )
+          );
         });
     } else {
       db.collection("movies")
@@ -31,6 +37,24 @@ const Home = () => {
         });
     }
   }, [searchString]);
+
+  const movieTransition = useTransition(movies, (movie) => movie?.id as any, {
+    config: {
+      duration: 250,
+    },
+    from: {
+      opacity: 0,
+      transform: "rotateY(90deg)",
+    },
+    enter: {
+      opacity: 1,
+      transform: "rotateY(0deg)",
+    },
+    leave: {
+      opacity: 0,
+      transform: "rotateY(90deg)",
+    },
+  });
 
   return (
     <>
@@ -57,14 +81,19 @@ const Home = () => {
           </div>
           <div className="c-gap-wrapper">
             <div className="flex flex-wrap c-gap-padding c-gap-5">
-              {movies.map((v, i) => (
-                <MovieItem
-                  key={i}
-                  id={v.id}
-                  img={v.img}
-                  name={v.name}
-                  year={v.year}
-                />
+              {movieTransition.map(({ item, props, key }) => (
+                <animated.div
+                  key={key}
+                  style={props}
+                  className="w-1/3 md:1/4 lg:w-1/6"
+                >
+                  <MovieItem
+                    id={item.id}
+                    img={item.img}
+                    name={item.name}
+                    year={item.year}
+                  />
+                </animated.div>
               ))}
             </div>
           </div>

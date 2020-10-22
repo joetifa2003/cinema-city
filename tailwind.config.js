@@ -26,6 +26,17 @@ module.exports = {
       white: "#fff",
 
       primary: "#0e1331",
+      "primary-shades": {
+          100: "#cfd0d6",
+          200: "#9fa1ad",
+          300: "#6e7183",
+          400: "#3e425a",
+          500: "#0e1331",
+          600: "#0b0f27",
+          700: "#080b1d",
+          800: "#060814",
+          900: "#03040a"
+      },
       secondary: "",
       accent: "",
       bg: "#eee",

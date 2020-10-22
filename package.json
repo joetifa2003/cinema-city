@@ -18,6 +18,7 @@
     "react-lazy-load-image-component": "^1.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-spring": "^8.0.27",
     "sweetalert2": "^10.6.1",
     "tailwindcss-gap": "^7.0.0",
     "tailwindcss-ripple": "^0.5.0",

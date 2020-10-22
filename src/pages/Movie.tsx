@@ -30,50 +30,60 @@ const Movie = () => {
   });
 
   return (
-    <div className="container min-h-full p-5 text-white bg-primary">
-      {movie ? (
-        <>
-          <div className="flex">
-            <div className="me-5">
-              <LazyLoadImage
-                alt={movie?.name}
-                effect="blur"
-                src={movie?.img}
-                style={{ minWidth: "350px", width: "350px" }}
-              />
+    <div className="w-full min-h-full bg-primary-shades-600">
+      <div className="container min-h-full p-5 text-white bg-primary">
+        {movie ? (
+          <>
+            <div className="flex">
+              <div className="me-5" data-aos="fade-up">
+                <LazyLoadImage
+                  alt={movie?.name}
+                  effect="blur"
+                  src={movie?.img}
+                  style={{ minWidth: "350px", width: "350px" }}
+                />
+              </div>
+              <div>
+                <div data-aos="fade-up" className="text-3xl font-bold">
+                  {movie?.name}
+                </div>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="250"
+                  className="font-bold"
+                >
+                  {movie?.desc}
+                </p>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold">{movie?.name}</div>
-              <p className="font-bold">{movie?.desc}</p>
-            </div>
-          </div>
-          <div className="overflow-hidden">
-            <div
-              style={{
-                position: "relative",
-                paddingTop: "56.25%",
-                overflow: "hidden",
-              }}
-            >
-              <iframe
-                src={`${movie?.server_link}`}
-                title="IFRAME"
-                frameBorder="0"
-                allowFullScreen
-                scrolling="no"
+            <div className="overflow-hidden">
+              <div
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
+                  position: "relative",
+                  paddingTop: "56.25%",
                   overflow: "hidden",
                 }}
-              ></iframe>
+              >
+                <iframe
+                  src={`${movie?.server_link}`}
+                  title="IFRAME"
+                  frameBorder="0"
+                  allowFullScreen
+                  scrolling="no"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    overflow: "hidden",
+                  }}
+                ></iframe>
+              </div>
             </div>
-          </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };
