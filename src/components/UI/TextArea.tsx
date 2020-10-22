@@ -12,7 +12,7 @@ const TextArea = ({
       <div className="mb-2 font-bold">{label}</div>
       <textarea
         placeholder={label}
-        className="w-full p-3 bg-gray-300 rounded-lg"
+        className="w-full p-3 border-2 border-gray-300 rounded-lg"
         onChange={onChange}
       />
     </div>

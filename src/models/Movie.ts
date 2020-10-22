@@ -5,6 +5,7 @@ interface MovieInterface {
   year?: number,
   desc?: string,
   server_link?: string,
+  categories?: string[]
 }
 
 

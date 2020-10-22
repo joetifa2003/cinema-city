@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import TextArea from "../../components/UI/TextArea";
 import TextBox from "../../components/UI/TextBox";
 import { db } from "../../firebase";
+import MultiSelect from "react-multi-select-component";
 
 const AddMovie = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,21 @@ const AddMovie = () => {
   const [year, setYear] = useState("");
   const [desc, setDesc] = useState("");
   const [serverLink, setServerLink] = useState("");
+  const [categories, setCategories] = useState([]);
+  const categoriesOptions = [
+    {
+      value: "اكشن",
+      label: "اكشن",
+    },
+    {
+      value: "اثاره",
+      label: "اثاره",
+    },
+    {
+      value: "دراما",
+      label: "دراما",
+    },
+  ];
 
   const getQueryArray = (query: string) => {
     const querySplited = query.split(" ");
@@ -37,6 +53,7 @@ const AddMovie = () => {
         year,
         desc,
         server_link: serverLink,
+        categories: categories.map((categorie: any) => categorie.value),
       })
       .then(
         () => {
@@ -96,6 +113,25 @@ const AddMovie = () => {
                   setServerLink(event.target.value);
                 }}
               />
+            </div>
+            <div className="w-full md:w-1/2">
+              <div className="mb-2 font-bold">Categories</div>
+              <div style={{ direction: "ltr" }}>
+                <MultiSelect
+                  labelledBy="Categories"
+                  hasSelectAll={false}
+                  options={categoriesOptions}
+                  value={categories}
+                  onChange={setCategories}
+                  overrideStrings={{
+                    selectSomeItems: "Select Movie categories",
+                    allItemsAreSelected: "All items are selected.",
+                    selectAll: "Select All",
+                    search: "Search",
+                    clearSearch: "Clear Search",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

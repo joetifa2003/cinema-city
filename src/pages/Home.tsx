@@ -43,14 +43,17 @@ const Home = () => {
     from: {
       opacity: 0,
       transform: "rotateY(90deg)",
+      filter: "blur(5px)",
     },
     enter: {
       opacity: 1,
       transform: "rotateY(0deg)",
+      filter: "blur(0px)",
     },
     leave: {
       opacity: 0,
       transform: "rotateY(90deg)",
+      filter: "blur(5px)",
     },
   });
 
@@ -90,6 +93,7 @@ const Home = () => {
                     img={item.img}
                     name={item.name}
                     year={item.year}
+                    categories={item.categories}
                   />
                 </animated.div>
               ))}
