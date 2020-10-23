@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import TextArea from "../../components/UI/TextArea";
 import TextBox from "../../components/UI/TextBox";
-import { db } from "../../firebase";
+import { db, fb } from "../../firebase";
 import MultiSelect from "react-multi-select-component";
 
 const AddMovie = () => {
@@ -12,6 +12,7 @@ const AddMovie = () => {
   const [desc, setDesc] = useState("");
   const [serverLink, setServerLink] = useState("");
   const [categories, setCategories] = useState([]);
+  const [type, setType] = useState("");
   const categoriesOptions = [
     {
       value: "اكشن",
@@ -26,6 +27,7 @@ const AddMovie = () => {
       label: "دراما",
     },
   ];
+  const typeOptions = ["movie", "series"];
 
   const getQueryArray = (query: string) => {
     const querySplited = query.split(" ");
@@ -36,7 +38,6 @@ const AddMovie = () => {
       const currentText = querySplited.join(" ");
       for (let j = 0; j < currentText.length; j++) {
         arr.push(currentText.substr(0, j + 1));
-        console.log(currentText.substr(0, j + 1));
       }
       querySplited.shift();
     }
@@ -45,7 +46,7 @@ const AddMovie = () => {
   };
 
   const addMovie = () => {
-    db.collection("movies")
+    db.collection("MoviesSeries")
       .add({
         name,
         name_query: getQueryArray(name.toLocaleLowerCase()),
@@ -54,6 +55,8 @@ const AddMovie = () => {
         desc,
         server_link: serverLink,
         categories: categories.map((categorie: any) => categorie.value),
+        timestamp: fb.firestore.FieldValue.serverTimestamp(),
+        type: type === "" ? "movie" : "series",
       })
       .then(
         () => {
@@ -70,10 +73,29 @@ const AddMovie = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div
+      className="flex flex-col items-center justify-center w-full h-full"
+      dir="ltr"
+    >
       <div className="container p-5 bg-white border-4 border-black">
         <div className="mb-8 c-gap-wrapper">
           <div className="flex flex-row flex-wrap c-gap-padding c-gap-8">
+            <div className="w-full md:w-1/2">
+              <div className="mb-2 font-bold">Type</div>
+              <div style={{ direction: "ltr" }}>
+                <select
+                  onChange={(e) => {
+                    setType(e.target.value);
+                  }}
+                  placeholder="Type"
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg"
+                >
+                  {typeOptions.map((v, i) => (
+                    <option key={i}>{v}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
             <div className="w-full md:w-1/2">
               <TextBox
                 label="Movie name"

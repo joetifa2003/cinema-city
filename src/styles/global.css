@@ -42,4 +42,12 @@
   *::-webkit-search-cancel-button {
     cursor: pointer;
   }
+
+  .btn-primary {
+    @apply p-5 font-bold text-white transition-all duration-500 bg-primary;
+  }
+
+  .btn-primary::hover {
+    @apply bg-primary-shades-400;
+  }
 }

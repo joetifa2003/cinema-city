@@ -2,6 +2,7 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
+    complexClassNames: true,
   },
   purge: ["./src/**/*.html", "./src/**/*.vue", "./src/**/*.tsx"],
   target: "relaxed",

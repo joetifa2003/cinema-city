@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
 import MovieInterface from "../models/Movie";
+import MetaTags from "../components/MetaTags/MetaTags";
 
 interface ParamTypes {
   id: string;
@@ -13,7 +14,7 @@ const Movie = () => {
   const [movie, setMovie] = useState<MovieInterface>();
 
   useEffect(() => {
-    db.collection("movies")
+    db.collection("MoviesSeries")
       .doc(id)
       .get()
       .then((doc) => {
@@ -33,6 +34,11 @@ const Movie = () => {
       <div className="container min-h-full p-5 text-white bg-primary">
         {movie ? (
           <>
+            <MetaTags
+              title={`Cinema City | ${movie.name} - مترجم كامل`}
+              desc={`Cinema City شاهد الان علي موقع ${movie.name}`}
+              img={`${movie.img}`}
+            />
             <div className="flex flex-col mb-5 md:flex-row">
               <div
                 className="flex justify-center mb-5 me-5 md:mb-0"
@@ -46,10 +52,15 @@ const Movie = () => {
                 />
               </div>
               <div className="w-full p-5 rounded-xl bg-primary-shades-600">
-                <div data-aos="fade-up" className="text-3xl font-bold">
+                <div
+                  dir="auto"
+                  data-aos="fade-up"
+                  className="text-3xl font-bold"
+                >
                   {movie?.name}
                 </div>
                 <p
+                  dir="auto"
                   data-aos="fade-up"
                   data-aos-delay="250"
                   className="font-bold"

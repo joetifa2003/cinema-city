@@ -7,7 +7,7 @@ const MovieItem = ({ img, name, year, categories, id }: MovieInterface) => {
 
   return (
     <div
-      className="transition-all duration-500 transform cursor-pointer hover:scale-110 group"
+      className="h-full transition-all duration-500 transform cursor-pointer hover:scale-110 group"
       onClick={() => {
         history.push(`/movie/${id}`);
       }}
@@ -15,7 +15,6 @@ const MovieItem = ({ img, name, year, categories, id }: MovieInterface) => {
       <div className="relative">
         <img
           loading="lazy"
-          height="auto"
           alt="Movie 1 (2020)"
           src={img}
           className="rounded-lg shadow-xl"
@@ -35,7 +34,7 @@ const MovieItem = ({ img, name, year, categories, id }: MovieInterface) => {
         </div>
       </div>
 
-      <div className="mt-auto font-bold text-center">{`${name} (${year})`}</div>
+      <div className="font-bold text-center">{`${name} (${year})`}</div>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     if (searchString) {
-      db.collection("movies")
+      db.collection("MoviesSeries")
         .where("name_query", "array-contains", searchString.toLocaleLowerCase())
         .get()
         .then((snapshot) => {
@@ -26,7 +26,7 @@ const Home = () => {
           );
         });
     } else {
-      db.collection("movies")
+      db.collection("MoviesSeries")
         .get()
         .then((snapshot) => {
           setMovies(
@@ -63,7 +63,7 @@ const Home = () => {
       <div className="container h-full">
         <div className="h-full">
           <div className="flex flex-wrap justify-between">
-            <div className="mb-5 underline-title">الافلام</div>
+            <div className="mb-5 underline-title">الافلام و المسلسلات</div>
             <div className="w-full mb-5 md:w-1/3 md:mb-0">
               <div className="relative flex items-center w-full p-2 border-2 border-black">
                 <i
