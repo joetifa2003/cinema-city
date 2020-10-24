@@ -5,9 +5,11 @@ import { GuardProvider, GuardedRoute } from "react-router-guards";
 import { ls } from "./utility/LocalStorage";
 const Home = React.lazy(() => import("./pages/Home"));
 const Movie = React.lazy(() => import("./pages/Movie"));
+const Series = React.lazy(() => import("./pages/Series"));
 const Dashboard = React.lazy(() => import("./pages/admin/Dashboard"));
 const Auth = React.lazy(() => import("./pages/admin/Auth"));
 const AddMovie = React.lazy(() => import("./pages/admin/AddMovie"));
+const AddEpisode = React.lazy(() => import("./pages/admin/AddEpisode"));
 
 const adminAuth = (to: any, from: any, next: any) => {
   if (to.meta.auth) {
@@ -30,6 +32,7 @@ const App = () => {
           <Switch>
             <GuardedRoute path="/" component={Home} exact />
             <GuardedRoute path="/movie/:id" component={Movie} />
+            <GuardedRoute path="/series/:id" component={Series} />
             <GuardedRoute
               path="/admin"
               component={Dashboard}
@@ -40,6 +43,12 @@ const App = () => {
             <GuardedRoute
               path="/admin/add"
               component={AddMovie}
+              exact
+              meta={{ auth: true }}
+            />
+            <GuardedRoute
+              path="/admin/add_episode"
+              component={AddEpisode}
               exact
               meta={{ auth: true }}
             />

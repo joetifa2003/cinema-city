@@ -1,4 +1,9 @@
-interface MovieInterface {
+export enum Type {
+  MOVIE = "movie",
+  SERIES = "series"
+}
+
+interface MovieSeriesInterface {
   id?: string,
   name?: string,
   img?: string,
@@ -6,7 +11,8 @@ interface MovieInterface {
   desc?: string,
   server_link?: string,
   categories?: string[]
+  type?: Type 
 }
 
 
-export default MovieInterface
+export default MovieSeriesInterface

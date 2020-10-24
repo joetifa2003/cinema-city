@@ -4,10 +4,10 @@ import MovieItem from "../components/Items/MovieItem";
 import debounce from "lodash/debounce";
 import { db } from "../firebase";
 import { useTransition, animated, config } from "react-spring";
-import MovieInterface from "../models/Movie";
+import MovieSeriesInterface from "../models/Movie";
 
 const Home = () => {
-  const [movies, setMovies] = useState<MovieInterface[]>([]);
+  const [movies, setMovies] = useState<MovieSeriesInterface[]>([]);
   const [searchString, setSearchString] = useState("");
   const setSearchStringLazy = debounce((value) => {
     setSearchString(value);

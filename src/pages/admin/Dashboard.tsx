@@ -11,7 +11,7 @@ const Dashboard = () => {
           className="container flex flex-wrap p-5 bg-white border-4 border-black c-gap-padding c-gap-5"
           dir="ltr"
         >
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <button
               onClick={() => {
                 history.push("/admin/add");
@@ -19,6 +19,16 @@ const Dashboard = () => {
               className="w-full btn-primary"
             >
               Add movie or series
+            </button>
+          </div>
+          <div className="w-full md:w-1/2">
+            <button
+              onClick={() => {
+                history.push("/admin/add_episode");
+              }}
+              className="w-full btn-primary"
+            >
+              Add episode
             </button>
           </div>
         </div>

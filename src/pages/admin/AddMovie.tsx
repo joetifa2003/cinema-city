@@ -15,6 +15,22 @@ const AddMovie = () => {
   const [type, setType] = useState("");
   const categoriesOptions = [
     {
+      value: "انمي",
+      label: "انمي",
+    },
+    {
+      value: "تركي",
+      label: "تركي",
+    },
+    {
+      value: "اجنبي",
+      label: "اجنبي",
+    },
+    {
+      value: "عريي",
+      label: "عريي",
+    },
+    {
       value: "اكشن",
       label: "اكشن",
     },
@@ -25,6 +41,30 @@ const AddMovie = () => {
     {
       value: "دراما",
       label: "دراما",
+    },
+    {
+      value: "حرب",
+      label: "حرب",
+    },
+    {
+      value: "نفسي",
+      label: "نفسي",
+    },
+    {
+      value: "رومانسي",
+      label: "رومانسي",
+    },
+    {
+      value: "دموي",
+      label: "دموي",
+    },
+    {
+      value: "الغاز",
+      label: "الغاز",
+    },
+    {
+      value: "+18",
+      label: "+18",
     },
   ];
   const typeOptions = ["movie", "series"];

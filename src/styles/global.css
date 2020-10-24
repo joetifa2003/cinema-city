@@ -50,4 +50,8 @@
   .btn-primary::hover {
     @apply bg-primary-shades-400;
   }
+
+  .swal2-container {
+    direction: ltr;
+  }
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import MovieInterface from "../models/Movie";
+import MovieSeriesInterface, { Type } from "../models/Movie";
 import MetaTags from "../components/MetaTags/MetaTags";
+import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
+import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 
 interface ParamTypes {
   id: string;
@@ -11,7 +13,7 @@ interface ParamTypes {
 const Movie = () => {
   const { id } = useParams<ParamTypes>();
 
-  const [movie, setMovie] = useState<MovieInterface>();
+  const [movie, setMovie] = useState<MovieSeriesInterface>();
 
   useEffect(() => {
     db.collection("MoviesSeries")
@@ -30,70 +32,21 @@ const Movie = () => {
   });
 
   return (
-    <div className="w-full min-h-full bg-primary-shades-600">
-      <div className="container min-h-full p-5 text-white bg-primary">
-        {movie ? (
+    <div className="flex flex-col w-full min-h-full bg-primary-shades-600">
+      <div className="container flex-1 min-h-full p-5 text-white bg-primary">
+        {movie && movie.type === Type.MOVIE ? (
           <>
             <MetaTags
               title={`Cinema City | ${movie.name} - مترجم كامل`}
               desc={`Cinema City شاهد الان علي موقع ${movie.name}`}
               img={`${movie.img}`}
             />
-            <div className="flex flex-col mb-5 md:flex-row">
-              <div
-                className="flex justify-center mb-5 me-5 md:mb-0"
-                data-aos="fade-up"
-              >
-                <img
-                  loading="lazy"
-                  alt={movie?.name}
-                  src={movie?.img as string}
-                  className="w-64 min-w-64"
-                />
-              </div>
-              <div className="w-full p-5 rounded-xl bg-primary-shades-600">
-                <div
-                  dir="auto"
-                  data-aos="fade-up"
-                  className="text-3xl font-bold"
-                >
-                  {movie?.name}
-                </div>
-                <p
-                  dir="auto"
-                  data-aos="fade-up"
-                  data-aos-delay="250"
-                  className="font-bold"
-                >
-                  {movie?.desc}
-                </p>
-              </div>
-            </div>
-            <div className="overflow-hidden">
-              <div
-                style={{
-                  position: "relative",
-                  paddingTop: "56.25%",
-                  overflow: "hidden",
-                }}
-              >
-                <iframe
-                  src={`${movie?.server_link}`}
-                  title="IFRAME"
-                  frameBorder="0"
-                  allowFullScreen
-                  scrolling="no"
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    overflow: "hidden",
-                  }}
-                ></iframe>
-              </div>
-            </div>
+            <DisplayInfo
+              name={`${movie.name}`}
+              desc={`${movie.desc}`}
+              img={`${movie.img}`}
+            />
+            <VideoDisplay link={`${movie.server_link}`} />
           </>
         ) : null}
       </div>
