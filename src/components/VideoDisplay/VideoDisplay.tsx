@@ -34,4 +34,4 @@ const VideoDisplay = ({ link }: PropTypes) => {
   );
 };
 
-export default VideoDisplay;
+export default React.memo(VideoDisplay);

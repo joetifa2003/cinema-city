@@ -4,6 +4,7 @@ import TextArea from "../../components/UI/TextArea";
 import TextBox from "../../components/UI/TextBox";
 import { db, fb } from "../../firebase";
 import MultiSelect from "react-multi-select-component";
+import { Type } from "../../models/Movie";
 
 const AddMovie = () => {
   const [name, setName] = useState("");
@@ -11,8 +12,9 @@ const AddMovie = () => {
   const [year, setYear] = useState("");
   const [desc, setDesc] = useState("");
   const [serverLink, setServerLink] = useState("");
+  const [download_link, setDownloadLink] = useState("");
   const [categories, setCategories] = useState([]);
-  const [type, setType] = useState("");
+  const [type, setType] = useState(Type.MOVIE);
   const categoriesOptions = [
     {
       value: "انمي",
@@ -94,9 +96,10 @@ const AddMovie = () => {
         year,
         desc,
         server_link: serverLink,
+        download_link,
         categories: categories.map((categorie: any) => categorie.value),
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
-        type: type === "" ? "movie" : "series",
+        type,
       })
       .then(
         () => {
@@ -125,7 +128,7 @@ const AddMovie = () => {
               <div style={{ direction: "ltr" }}>
                 <select
                   onChange={(e) => {
-                    setType(e.target.value);
+                    setType(e.target.value as Type);
                   }}
                   placeholder="Type"
                   className="w-full p-3 border-2 border-gray-300 rounded-lg"
@@ -160,7 +163,7 @@ const AddMovie = () => {
                 }}
               />
             </div>
-            <div className="w-full md:w-1/2">
+            <div className="w-full">
               <TextArea
                 label="Descreption"
                 onChange={(event) => {
@@ -168,14 +171,26 @@ const AddMovie = () => {
                 }}
               />
             </div>
-            <div className="w-full md:w-1/2">
-              <TextArea
-                label="Video server link"
-                onChange={(event) => {
-                  setServerLink(event.target.value);
-                }}
-              />
-            </div>
+            {type === Type.MOVIE ? (
+              <>
+                <div className="w-full md:w-1/2">
+                  <TextBox
+                    label="Video server link"
+                    onChange={(event) => {
+                      setServerLink(event.target.value);
+                    }}
+                  />
+                </div>
+                <div className="w-full md:w-1/2">
+                  <TextBox
+                    label="Download Link"
+                    onChange={(event) => {
+                      setDownloadLink(event.target.value);
+                    }}
+                  />
+                </div>
+              </>
+            ) : null}
             <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Categories</div>
               <div style={{ direction: "ltr" }}>

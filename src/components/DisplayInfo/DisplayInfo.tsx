@@ -30,4 +30,4 @@ const DisplayInfo = ({ name, desc, img }: PropTypes) => {
   );
 };
 
-export default DisplayInfo;
+export default React.memo(DisplayInfo);

@@ -29,4 +29,4 @@ const MetaTags = ({
   );
 };
 
-export default MetaTags;
+export default React.memo(MetaTags);

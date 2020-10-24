@@ -1,0 +1,30 @@
+"filename", "language", "TypeScript React", "TypeScript", "XML", "CSS", "comment", "blank", "total"
+"c:\Projects\cinema-city\src\App.tsx", "TypeScript React", 59, 0, 0, 0, 0, 4, 63
+"c:\Projects\cinema-city\src\components\DisplayInfo\DisplayInfo.tsx", "TypeScript React", 30, 0, 0, 0, 0, 4, 34
+"c:\Projects\cinema-city\src\components\Hero\Hero.css", "CSS", 0, 0, 0, 18, 0, 3, 21
+"c:\Projects\cinema-city\src\components\Hero\Hero.tsx", "TypeScript React", 38, 0, 0, 0, 0, 3, 41
+"c:\Projects\cinema-city\src\components\Items\MovieItem.tsx", "TypeScript React", 51, 0, 0, 0, 4, 5, 60
+"c:\Projects\cinema-city\src\components\MetaTags\MetaTags.tsx", "TypeScript React", 30, 0, 0, 0, 0, 3, 33
+"c:\Projects\cinema-city\src\components\Nav\Nav.tsx", "TypeScript React", 27, 0, 0, 0, 0, 4, 31
+"c:\Projects\cinema-city\src\components\UI\TextArea.tsx", "TypeScript React", 20, 0, 0, 0, 0, 3, 23
+"c:\Projects\cinema-city\src\components\UI\TextBox.tsx", "TypeScript React", 21, 0, 0, 0, 0, 3, 24
+"c:\Projects\cinema-city\src\components\VideoDisplay\VideoDisplay.tsx", "TypeScript React", 34, 0, 0, 0, 0, 4, 38
+"c:\Projects\cinema-city\src\firebase.ts", "TypeScript", 0, 25, 0, 0, 3, 4, 32
+"c:\Projects\cinema-city\src\hooks\useDidMountEffect.tsx", "TypeScript React", 12, 0, 0, 0, 0, 4, 16
+"c:\Projects\cinema-city\src\index.tsx", "TypeScript React", 20, 0, 0, 0, 0, 4, 24
+"c:\Projects\cinema-city\src\logo.svg", "XML", 0, 0, 7, 0, 0, 1, 8
+"c:\Projects\cinema-city\src\models\Movie.ts", "TypeScript", 0, 15, 0, 0, 0, 3, 18
+"c:\Projects\cinema-city\src\pages\Home.tsx", "TypeScript React", 103, 0, 0, 0, 0, 6, 109
+"c:\Projects\cinema-city\src\pages\Movie.tsx", "TypeScript React", 51, 0, 0, 0, 0, 7, 58
+"c:\Projects\cinema-city\src\pages\Series.tsx", "TypeScript React", 79, 0, 0, 0, 0, 9, 88
+"c:\Projects\cinema-city\src\pages\admin\AddEpisode.tsx", "TypeScript React", 95, 0, 0, 0, 0, 7, 102
+"c:\Projects\cinema-city\src\pages\admin\AddMovie.tsx", "TypeScript React", 206, 0, 0, 0, 0, 8, 214
+"c:\Projects\cinema-city\src\pages\admin\Auth.tsx", "TypeScript React", 45, 0, 0, 0, 0, 6, 51
+"c:\Projects\cinema-city\src\pages\admin\Dashboard.tsx", "TypeScript React", 37, 0, 0, 0, 0, 4, 41
+"c:\Projects\cinema-city\src\react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 1, 1, 2
+"c:\Projects\cinema-city\src\react-graceful-image.d.ts", "TypeScript", 0, 1, 0, 0, 0, 0, 1
+"c:\Projects\cinema-city\src\serviceWorker.ts", "TypeScript", 0, 105, 0, 0, 31, 14, 150
+"c:\Projects\cinema-city\src\setupTests.ts", "TypeScript", 0, 1, 0, 0, 4, 1, 6
+"c:\Projects\cinema-city\src\styles\global.css", "CSS", 0, 0, 0, 45, 0, 13, 58
+"c:\Projects\cinema-city\src\utility\LocalStorage.ts", "TypeScript", 0, 5, 0, 0, 0, 1, 6
+"Total", "-", 958, 152, 7, 63, 43, 129, 1352

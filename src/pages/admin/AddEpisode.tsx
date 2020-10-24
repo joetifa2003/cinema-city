@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const AddEpisode = () => {
   const [series, setSeries] = useState<MovieSeriesInterface>();
   const [link, setLink] = useState("");
+  const [download_link, setDownloadLink] = useState("");
   const [episode, setEpisode] = useState(0);
   const [value, setValue] = useState("");
 
@@ -31,6 +32,7 @@ const AddEpisode = () => {
       .collection("Episodes")
       .add({
         link,
+        download_link,
         episode,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
       })
@@ -78,6 +80,14 @@ const AddEpisode = () => {
                 label="Episode link"
                 onChange={(e) => {
                   setLink(e.target.value);
+                }}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <TextBox
+                label="Download link"
+                onChange={(e) => {
+                  setDownloadLink(e.target.value);
                 }}
               />
             </div>

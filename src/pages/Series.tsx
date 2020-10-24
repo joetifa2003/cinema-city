@@ -13,6 +13,7 @@ interface ParamTypes {
 interface Episode {
   episode: string;
   link: string;
+  download_link: string;
 }
 
 const Series = () => {
@@ -58,8 +59,8 @@ const Series = () => {
               img={`${series.img}`}
             />
             <VideoDisplay link={`${currEpisode?.link}`} />
-            <div className="c-gap-wrapper">
-              <div className="flex flex-col p-5 bg-primary-shades-600 c-gap c-gap-3">
+            <div className="c-gap-wrapper bg-primary-shades-600">
+              <div className="flex flex-col p-5 c-gap c-gap-3">
                 {episodes?.map((v, i) => (
                   <div
                     key={i}
@@ -76,6 +77,21 @@ const Series = () => {
                   </div>
                 ))}
               </div>
+            </div>
+            <div>
+              <button
+                className="flex items-center bg-red-600 btn-primary"
+                onClick={() => {
+                  window.open(currEpisode?.download_link, "_blank");
+                }}
+              >
+                {`حمل الحلقه ${currEpisode?.episode} الان`}
+                <span
+                  className="text-2xl iconify ms-2"
+                  data-icon="bi:arrow-down-circle-fill"
+                  data-inline="false"
+                ></span>
+              </button>
             </div>
           </>
         ) : null}

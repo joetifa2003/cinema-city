@@ -10,6 +10,7 @@ interface MovieSeriesInterface {
   year?: number,
   desc?: string,
   server_link?: string,
+  download_link?: string,
   categories?: string[]
   type?: Type 
 }

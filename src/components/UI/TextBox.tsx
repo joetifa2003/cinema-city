@@ -20,4 +20,4 @@ const TextBox = ({
   );
 };
 
-export default TextBox;
+export default React.memo(TextBox);
