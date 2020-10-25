@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import MovieSeriesInterface, { Type } from "../../models/Movie";
 import Image from "react-graceful-image";
+import Ratio from "react-ratio";
 
 const MovieItem = ({
   img,
@@ -15,25 +16,24 @@ const MovieItem = ({
 
   return (
     <div
-      className="relative h-full transition-all duration-500 transform cursor-pointer hover:scale-110 group"
+      className="relative w-full h-full transition-all duration-500 transform cursor-pointer hover:scale-110 group"
       onClick={() => {
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);
       }}
     >
-      <div className="relative">
-        {/* <img
-          loading="lazy"
-          alt="Movie 1 (2020)"uar
-          src={img}
-          className="rounded-lg shadow-xl"
-        /> */}
-        <Image
-          className="rounded-lg shadow-xl"
-          alt="Movie 1 (2020)"
-          src={img}
-        />
-        <div className="absolute top-0 left-0 z-10 w-full h-full p-2 py-5 transition-all duration-500 bg-opacity-75 opacity-0 bg-primary-shades-600 group-hover:opacity-100">
+      <div className="relative w-full">
+        <Ratio ratio={0.69}>
+          <Image
+            className="rounded-lg shadow-xl"
+            alt="Movie 1 (2020)"
+            src={img}
+            width="100%"
+            height="100%"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Ratio>
+        <div className="absolute top-0 left-0 z-10 w-full h-full p-2 py-5 transition-all duration-500 bg-opacity-75 rounded-lg opacity-0 bg-primary-shades-600 group-hover:opacity-100">
           <div className="mb-2 font-bold text-white">النوع</div>
           <div className="flex flex-wrap">
             {categories?.map((category, index) => (

@@ -59,7 +59,12 @@ const Series = () => {
               img={`${series.img}`}
             />
             <VideoDisplay link={`${currEpisode?.link}`} />
-            <div className="c-gap-wrapper bg-primary-shades-600">
+            <div
+              className="overflow-x-hidden overflow-y-auto c-gap-wrapper bg-primary-shades-600"
+              style={{
+                maxHeight: "250px",
+              }}
+            >
               <div className="flex flex-col p-5 c-gap c-gap-3">
                 {episodes?.map((v, i) => (
                   <div
