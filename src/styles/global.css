@@ -55,6 +55,7 @@
     direction: ltr;
   }
 
+  /* purgecss start ignore */
   ::-webkit-scrollbar {
     width: 2px;
     height: 2px;
@@ -88,6 +89,7 @@
   ::-webkit-scrollbar-corner {
     background: transparent;
   }
+  /* purgecss end ignore */
 
   img {
     max-height: 100%;
