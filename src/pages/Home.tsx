@@ -86,7 +86,7 @@ const Home = () => {
                 <animated.div
                   key={key}
                   style={props}
-                  className="w-1/2 md:1/4 lg:w-1/6"
+                  className="w-1/2 sm:w-1/3 md:1/4 lg:w-1/5"
                 >
                   <MovieItem
                     id={item.id}

@@ -92,16 +92,13 @@ const Series = () => {
                 >
                   <InfiniteScroll
                     dataLength={episodes?.length || 0}
-                    hasMore={lastEpisode != null}
+                    hasMore={
+                      lastEpisode != null && (episodes?.length as number) > 1
+                    }
                     next={loadEpisodes}
                     loader={
                       <div className="mb-5 text-lg font-bold text-white ms-5">
                         جاري التحميل
-                      </div>
-                    }
-                    endMessage={
-                      <div className="mb-5 text-lg font-bold text-white ms-5">
-                        تم تحميل كل الحلقات
                       </div>
                     }
                     scrollableTarget="scrollableDiv"
