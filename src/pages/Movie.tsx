@@ -45,6 +45,7 @@ const Movie = () => {
               name={`${movie.name}`}
               desc={`${movie.desc}`}
               img={`${movie.img}`}
+              categories={movie.categories as string[]}
             />
             <div className="w-full mb-5">
               <div className="mb-5 text-3xl font-bold border-white">

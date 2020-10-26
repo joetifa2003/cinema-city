@@ -6,9 +6,10 @@ interface PropTypes {
   name: string;
   desc: string;
   img: string;
+  categories: string[];
 }
 
-const DisplayInfo = ({ name, desc, img }: PropTypes) => {
+const DisplayInfo = ({ name, desc, img, categories }: PropTypes) => {
   return (
     <div className="flex flex-col mb-5 md:flex-row">
       <div className="flex justify-center mb-5 me-5 md:mb-0" data-aos="fade-up">
@@ -22,7 +23,7 @@ const DisplayInfo = ({ name, desc, img }: PropTypes) => {
           />
         </Ratio>
       </div>
-      <div className="w-full p-5 rounded-xl bg-primary-shades-600">
+      <div className="flex flex-col w-full p-5 rounded-xl bg-primary-shades-600">
         <div dir="auto" data-aos="fade-up" className="text-3xl font-bold">
           {name}
         </div>
@@ -34,6 +35,18 @@ const DisplayInfo = ({ name, desc, img }: PropTypes) => {
         >
           {desc}
         </p>
+        <div className="mt-auto c-gap-wrapper">
+          <div className="flex flex-wrap c-gap c-gap-2" data-aos="fade-left">
+            {categories?.map((category, index) => (
+              <div
+                key={index}
+                className="px-3 py-2 text-xs font-bold text-white rounded-full bg-primary-shades-700"
+              >
+                {category}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
