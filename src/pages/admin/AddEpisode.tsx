@@ -29,12 +29,12 @@ const AddEpisode = () => {
     if (!series) return Swal.fire("Please select series frist!", "", "error");
     db.collection("MoviesSeries")
       .doc(series.id)
-      .collection("Episodes")
-      .add({
-        link,
-        download_link,
-        episode,
-        timestamp: fb.firestore.FieldValue.serverTimestamp(),
+      .update({
+        episodes: fb.firestore.FieldValue.arrayUnion({
+          link,
+          download_link,
+          episode,
+        }),
       })
       .then(() =>
         Swal.fire(

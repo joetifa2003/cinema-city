@@ -3,6 +3,12 @@ export enum Type {
   SERIES = "series"
 }
 
+export interface Episode {
+  episode: string;
+  link: string;
+  download_link: string;
+}
+
 interface MovieSeriesInterface {
   id?: string,
   name?: string,
@@ -12,6 +18,7 @@ interface MovieSeriesInterface {
   server_link?: string,
   download_link?: string,
   categories?: string[]
+  episodes?: Episode[], 
   type?: Type 
 }
 
