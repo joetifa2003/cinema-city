@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
 import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
 import MetaTags from "../components/MetaTags/MetaTags";
 import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 import { db } from "../firebase";
 import MovieSeriesInterface, { Type, Episode } from "../models/Movie";
-import { sortBy } from "lodash";
 
 interface ParamTypes {
   id: string;
@@ -15,7 +15,9 @@ const Series = () => {
   const { id } = useParams<ParamTypes>();
 
   const [series, setSeries] = useState<MovieSeriesInterface>();
+  const [episodes, setEpisodes] = useState<Episode[]>();
   const [currEpisode, setCurrEpisode] = useState<Episode>();
+  const [lastEpisode, setLastEpisode] = useState<Episode>();
 
   useEffect(() => {
     db.collection("MoviesSeries")
@@ -23,12 +25,39 @@ const Series = () => {
       .get()
       .then((doc) => {
         const series: any = doc.data();
-        series.episodes = sortBy(series.episodes, (episode) => episode.episode);
-
         setSeries({ ...series });
-        setCurrEpisode(series.episodes[0] as Episode);
+      });
+
+    db.collection("MoviesSeries")
+      .doc(id)
+      .collection("Episodes")
+      .orderBy("episode", "asc")
+      .limit(4)
+      .get()
+      .then((snapshot) => {
+        const episodes = snapshot.docs.map((doc) => doc.data()) as Episode[];
+
+        setEpisodes(episodes);
+        setCurrEpisode(episodes[0]);
+        setLastEpisode(episodes[episodes.length - 1]);
       });
   }, [id]);
+
+  const loadEpisodes = () => {
+    db.collection("MoviesSeries")
+      .doc(id)
+      .collection("Episodes")
+      .orderBy("episode", "asc")
+      .startAfter(lastEpisode?.episode)
+      .limit(4)
+      .get()
+      .then((snapshot) => {
+        const episodes = snapshot.docs.map((doc) => doc.data()) as Episode[];
+
+        setEpisodes((prev) => [...(prev as any), ...episodes]);
+        setLastEpisode(episodes[episodes.length - 1]);
+      });
+  };
 
   return (
     <div className="flex flex-col w-full min-h-full bg-primary-shades-600">
@@ -51,26 +80,45 @@ const Series = () => {
                 <div
                   className="overflow-x-hidden overflow-y-auto c-gap-wrapper bg-primary-shades-600"
                   style={{
-                    maxHeight: "250px",
+                    maxHeight: "260px",
                   }}
+                  id="scrollableDiv"
                 >
-                  <div className="flex flex-col p-5 c-gap c-gap-3">
-                    {series.episodes?.map((v, i) => (
-                      <div
-                        key={i}
-                        className={`p-3 font-bold text-white bg-primary rounded-e-lg ${
-                          currEpisode?.episode === v.episode
-                            ? "bg-primary-shades-400"
-                            : ""
-                        } hover:bg-primary-shades-400 cursor-pointer`}
-                        onClick={() => {
-                          setCurrEpisode(v);
-                        }}
-                      >
-                        حلقه {`${v.episode}`}
+                  <InfiniteScroll
+                    dataLength={episodes?.length || 0}
+                    hasMore={lastEpisode != null}
+                    next={loadEpisodes}
+                    loader={
+                      <div className="mb-5 text-lg font-bold text-white ms-5">
+                        جاري التحميل
                       </div>
-                    ))}
-                  </div>
+                    }
+                    endMessage={
+                      <div className="mb-5 text-lg font-bold text-white ms-5">
+                        تم تحميل كل الحلقات
+                      </div>
+                    }
+                    scrollableTarget="scrollableDiv"
+                    style={{ overflow: "hidden" }}
+                  >
+                    <div className="flex flex-col p-5 c-gap c-gap-3">
+                      {episodes?.map((v, i) => (
+                        <div
+                          key={i}
+                          className={`p-3 font-bold text-white bg-primary rounded-e-lg ${
+                            currEpisode?.episode === v.episode
+                              ? "bg-primary-shades-400"
+                              : ""
+                          } hover:bg-primary-shades-400 cursor-pointer`}
+                          onClick={() => {
+                            setCurrEpisode(v);
+                          }}
+                        >
+                          حلقه {`${v.episode}`}
+                        </div>
+                      ))}
+                    </div>
+                  </InfiniteScroll>
                 </div>
                 <div>
                   <button
