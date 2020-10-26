@@ -46,6 +46,12 @@ const Movie = () => {
               desc={`${movie.desc}`}
               img={`${movie.img}`}
             />
+            <div className="w-full mb-5">
+              <div className="mb-5 text-3xl font-bold border-white">
+                اعلان الفيلم
+              </div>
+              <VideoDisplay link={`${movie?.trailer}`} />
+            </div>
             <VideoDisplay link={`${movie.server_link}`} />
           </>
         ) : null}
