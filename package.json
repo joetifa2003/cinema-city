@@ -14,6 +14,7 @@
     "firebase": "^7.24.0",
     "lodash": "^4.17.20",
     "react": "^16.14.0",
+    "react-ad-block-detect": "^1.0.1",
     "react-dom": "^16.14.0",
     "react-graceful-image": "^1.5.0",
     "react-helmet": "^6.1.0",
