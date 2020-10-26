@@ -74,6 +74,12 @@ const Series = () => {
               desc={`${series.desc}`}
               img={`${series.img}`}
             />
+            <div className="w-full mb-5">
+              <div className="mb-5 text-3xl font-bold border-white">
+                اعلان المسلسل
+              </div>
+              <VideoDisplay link={`${series?.trailer}`} />
+            </div>
             {currEpisode ? (
               <>
                 <VideoDisplay link={`${currEpisode?.link}`} />

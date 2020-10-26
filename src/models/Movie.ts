@@ -19,6 +19,7 @@ interface MovieSeriesInterface {
   download_link?: string,
   categories?: string[]
   episodes?: Episode[], 
+  trailer?: string, 
   type?: Type 
 }
 

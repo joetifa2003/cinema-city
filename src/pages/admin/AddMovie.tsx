@@ -14,6 +14,7 @@ const AddMovie = () => {
   const [serverLink, setServerLink] = useState("");
   const [download_link, setDownloadLink] = useState("");
   const [categories, setCategories] = useState([]);
+  const [trailer, setTrailer] = useState("");
   const [type, setType] = useState(Type.MOVIE);
   const categoriesOptions = [
     {
@@ -98,6 +99,7 @@ const AddMovie = () => {
         server_link: serverLink,
         download_link,
         categories: categories.map((categorie: any) => categorie.value),
+        trailer,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
         type,
       })
@@ -168,6 +170,14 @@ const AddMovie = () => {
                 label="Descreption"
                 onChange={(event) => {
                   setDesc(event.target.value);
+                }}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <TextBox
+                label="Trailer"
+                onChange={(event) => {
+                  setTrailer(event.target.value);
                 }}
               />
             </div>
