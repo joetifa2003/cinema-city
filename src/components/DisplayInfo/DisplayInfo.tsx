@@ -25,10 +25,7 @@ const DisplayInfo = ({
 }: PropTypes) => {
   return (
     <div className="flex flex-col mb-5 md:flex-row">
-      <div
-        className="flex justify-center mb-5 me-5 md:mb-0"
-        data-aos="fade-left"
-      >
+      <div className="flex justify-center mb-5 me-5 md:mb-0" data-aos="fade">
         <Ratio ratio={0.69} className="w-64 min-w-64">
           <Image
             alt={name}
@@ -40,13 +37,13 @@ const DisplayInfo = ({
         </Ratio>
       </div>
       <div className="flex flex-col w-full p-5 rounded-xl bg-primary-shades-600">
-        <div dir="auto" data-aos="fade-right" className="text-3xl font-bold">
+        <div dir="auto" className="text-3xl font-bold">
           {name}
         </div>
-        <p dir="auto" data-aos="fade-right" className="font-bold">
+        <p dir="auto" className="font-bold">
           {desc}
         </p>
-        <div className="pt-24 mt-auto" data-aos="fade-left">
+        <div className="flex flex-col justify-between pt-16 mt-auto lg:flex-row">
           <div className="mb-5">
             {[
               {
@@ -91,37 +88,39 @@ const DisplayInfo = ({
               </>
             ))}
           </div>
-          <div className="mb-5">
-            <div className="mb-2 text-xl font-bold text-white">النوع</div>
-            <div className="c-gap-wrapper">
-              <div className="flex flex-wrap c-gap-padding c-gap-2">
-                {categories?.map((category, index) => (
-                  <div>
-                    <div
-                      key={index}
-                      className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-700"
-                    >
-                      {category}
+          <div>
+            <div className="mb-5">
+              <div className="mb-2 text-xl font-bold text-white">النوع</div>
+              <div className="c-gap-wrapper">
+                <div className="flex flex-wrap c-gap-padding c-gap-2">
+                  {categories?.map((category, index) => (
+                    <div>
+                      <div
+                        key={index}
+                        className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-700"
+                      >
+                        {category}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <div className="mb-2 text-xl font-bold text-white">التحذيرات</div>
-            <div className="c-gap-wrapper">
-              <div className="flex flex-wrap c-gap-padding c-gap-2">
-                {warnings?.map((warning, index) => (
-                  <div>
-                    <div
-                      key={index}
-                      className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full"
-                    >
-                      {warning}
+            <div>
+              <div className="mb-2 text-xl font-bold text-white">التحذيرات</div>
+              <div className="c-gap-wrapper">
+                <div className="flex flex-wrap c-gap-padding c-gap-2">
+                  {warnings?.map((warning, index) => (
+                    <div>
+                      <div
+                        key={index}
+                        className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full"
+                      >
+                        {warning}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

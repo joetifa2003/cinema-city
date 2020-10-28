@@ -8,7 +8,7 @@ import "aos/dist/aos.css";
 
 AOS.init({
   once: true,
-  easing: "ease-in-out",
+  startEvent: "load",
 });
 
 ReactDOM.render(
