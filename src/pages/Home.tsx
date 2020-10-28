@@ -94,6 +94,7 @@ const Home = () => {
                     name={item.name}
                     year={item.year}
                     categories={item.categories}
+                    warnings={item.warnings}
                   />
                 </animated.div>
               ))}

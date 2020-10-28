@@ -5,6 +5,7 @@ import MovieSeriesInterface, { Type } from "../models/Movie";
 import MetaTags from "../components/MetaTags/MetaTags";
 import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
 import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
+import Loading from "../components/Loading/Loading";
 
 interface ParamTypes {
   id: string;
@@ -20,14 +21,8 @@ const Movie = () => {
       .doc(id)
       .get()
       .then((doc) => {
-        const { name, img, year, desc, server_link }: any = doc.data();
-        setMovie({
-          name,
-          img,
-          year,
-          desc,
-          server_link,
-        });
+        const movie: any = doc.data();
+        setMovie({ ...movie });
       });
   });
 
@@ -46,6 +41,10 @@ const Movie = () => {
               desc={`${movie.desc}`}
               img={`${movie.img}`}
               categories={movie.categories as string[]}
+              imdb={`${movie.imdb}`}
+              length={`${movie.length}`}
+              country={`${movie.country}`}
+              warnings={movie.warnings as string[]}
             />
             <div className="w-full mb-5">
               <div className="mb-5 text-3xl font-bold border-white">
@@ -55,7 +54,9 @@ const Movie = () => {
             </div>
             <VideoDisplay link={`${movie.server_link}`} />
           </>
-        ) : null}
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );

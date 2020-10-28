@@ -7,7 +7,7 @@ module.exports = {
   purge: ["./src/**/*.html", "./src/**/*.vue", "./src/**/*.tsx"],
   target: "relaxed",
   prefix: "",
-  important: false,
+  important: true,
   separator: ":",
   theme: {
     ripple: (theme) => ({

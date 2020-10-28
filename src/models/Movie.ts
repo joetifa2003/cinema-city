@@ -17,9 +17,13 @@ interface MovieSeriesInterface {
   desc?: string,
   server_link?: string,
   download_link?: string,
-  categories?: string[]
+  categories?: string[],
+  warnings?: string[],
   episodes?: Episode[], 
   trailer?: string, 
+  imdb?: string,
+  length?: string,
+  country?: string,
   type?: Type 
 }
 

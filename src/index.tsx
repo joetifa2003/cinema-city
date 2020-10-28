@@ -7,7 +7,8 @@ import "./styles/global.css";
 import "aos/dist/aos.css";
 
 AOS.init({
-  once: false,
+  once: true,
+  easing: "ease-in-out",
 });
 
 ReactDOM.render(

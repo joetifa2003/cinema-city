@@ -25,6 +25,7 @@
     "react-router-guards": "^1.0.2",
     "react-scripts": "^3.4.4",
     "react-select": "^3.1.0",
+    "react-spinkit": "^3.0.0",
     "react-spring": "^8.0.27",
     "secure-ls": "^1.2.6",
     "sweetalert2": "^10.6.1",

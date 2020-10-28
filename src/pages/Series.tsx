@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
 import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
+import Loading from "../components/Loading/Loading";
 import MetaTags from "../components/MetaTags/MetaTags";
 import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 import { db } from "../firebase";
@@ -61,7 +62,7 @@ const Series = () => {
 
   return (
     <div className="flex flex-col w-full min-h-full bg-primary-shades-600">
-      <div className="container flex-1 min-h-full p-5 text-white bg-primary">
+      <div className="container flex flex-col flex-1 p-5 text-white bg-primary">
         {series && series.type === Type.SERIES ? (
           <>
             <MetaTags
@@ -74,6 +75,10 @@ const Series = () => {
               desc={`${series.desc}`}
               img={`${series.img}`}
               categories={series.categories as string[]}
+              imdb={`${series.imdb}`}
+              length={``}
+              country={`${series.country}`}
+              warnings={series.warnings as string[]}
             />
             <div className="w-full mb-5">
               <div className="mb-5 text-3xl font-bold border-white">
@@ -142,7 +147,9 @@ const Series = () => {
               </>
             ) : null}
           </>
-        ) : null}
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );
