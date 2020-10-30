@@ -8,7 +8,7 @@ const Dashboard = () => {
     <div className="flex items-center justify-center w-full h-full">
       <div className="w-full c-gap-wrapper">
         <div
-          className="container flex flex-wrap p-5 bg-white border-4 border-black c-gap-padding c-gap-5"
+          className="container flex flex-wrap p-5 text-black bg-white border-4 border-black c-gap-padding c-gap-5"
           dir="ltr"
         >
           <div className="w-full md:w-1/2">

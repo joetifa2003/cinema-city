@@ -51,7 +51,7 @@ const AddEpisode = () => {
       className="flex flex-col items-center justify-center w-full h-full"
       dir="ltr"
     >
-      <div className="container p-5 bg-white border-4 border-black">
+      <div className="container p-5 text-black bg-white border-4 border-black">
         <div className="mb-2 font-bold">Series</div>
         <AsyncSelect
           cacheOptions

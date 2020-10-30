@@ -66,7 +66,7 @@ const Home = () => {
     <>
       <Hero />
       <div className="container h-full pt-5">
-        <div className="h-full">
+        <div className="relative h-full">
           <div className="flex flex-wrap justify-between">
             <div className="mb-5 underline-title">الافلام و المسلسلات</div>
             <div className="w-full mb-5 md:w-1/3 md:mb-0">
@@ -85,7 +85,16 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {loading ? <Loading color="white" /> : null}
+          {loading ? (
+            <div
+              className="absolute left-0 z-10 w-full h-full bg-black bg-opacity-25 top-16"
+              style={{
+                backdropFilter: "blur(5px)",
+              }}
+            >
+              <Loading color="white" />
+            </div>
+          ) : null}
           <div className="c-gap-wrapper">
             <div className="flex flex-wrap c-gap-padding c-gap-5">
               {movieTransition.map(({ item, props, key }) => (

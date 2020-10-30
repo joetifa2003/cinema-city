@@ -4,110 +4,108 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  html,
-  body,
+html,
+body,
+#root {
+  @apply bg-bg;
+  height: 100%;
+  max-height: max-content;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#root {
+  @apply bg-primary-shades-600 text-white;
+  height: 100%;
+  padding-top: 125px;
+}
+
+@screen md {
   #root {
-    @apply bg-bg;
-    height: 100%;
-    max-height: max-content;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  #root {
-    @apply bg-primary-shades-600 text-white;
-    height: 100%;
-    padding-top: 125px;
-  }
-
-  @screen md {
-    #root {
-      padding-top: 61px;
-    }
-  }
-
-  .container {
-    @apply px-5 mx-auto;
-  }
-
-  @screen md {
-    .container {
-      padding: 0;
-    }
-  }
-
-  .underline-title {
-    @apply inline-block text-3xl font-bold border-b-4 border-white;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  *::-webkit-search-cancel-button {
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    @apply p-5 font-bold text-white transition-all duration-500 bg-primary;
-  }
-
-  .btn-primary::hover {
-    @apply bg-primary-shades-400;
-  }
-
-  .swal2-container {
-    direction: ltr;
-  }
-
-  /* purgecss start ignore */
-  ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-  }
-  ::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #e1e1e1;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #ffffff;
-  }
-  ::-webkit-scrollbar-thumb:active {
-    background: #000000;
-  }
-  ::-webkit-scrollbar-track {
-    background: #666666;
-    border: 0px none #ffffff;
-    border-radius: 50px;
-  }
-  ::-webkit-scrollbar-track:hover {
-    background: #666666;
-  }
-  ::-webkit-scrollbar-track:active {
-    background: #333333;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
-  }
-  /* purgecss end ignore */
-
-  img {
-    max-height: 100%;
+    padding-top: 61px;
   }
 }
 
+.container {
+  @apply px-5 mx-auto;
+}
+
+@screen md {
+  .container {
+    padding: 0;
+  }
+}
+
+.underline-title {
+  @apply inline-block text-3xl font-bold border-b-4 border-white;
+}
+
+button:focus {
+  outline: none;
+}
+
+*::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.btn-primary {
+  @apply p-5 font-bold text-white transition-all duration-500 bg-primary;
+}
+
+.btn-primary:hover {
+  @apply bg-primary-shades-400;
+}
+
+.swal2-container {
+  direction: ltr;
+}
+
+/* purgecss start ignore */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+/* purgecss end ignore */
+
+img {
+  max-height: 100%;
+}
+
 .clip {
-  clip-path: inset(50% 0% 50% 0%);
+  clip-path: circle(0% at 50% 50%);
   transition: all 0.5s ease-in-out;
 }
 
 .group:hover .clip {
-  clip-path: inset(0% 0% 0% 0%);
+  clip-path: circle(100% at 50% 50%);
   backdrop-filter: grayscale(100%) blur(2px);
 }

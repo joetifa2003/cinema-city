@@ -110,7 +110,7 @@ const AddMovie = () => {
       className="flex flex-col items-center justify-center w-full min-h-full p-5"
       dir="ltr"
     >
-      <div className="container p-5 bg-white border-4 border-black">
+      <div className="container p-5 text-black bg-white border-4 border-black">
         <div className="mb-8 c-gap-wrapper">
           <div className="flex flex-row flex-wrap c-gap-padding c-gap-8">
             <div className="w-full md:w-1/2">

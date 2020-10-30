@@ -1,15 +1,12 @@
 import React from "react";
-import Spinner from "react-spinkit";
+import { PuffLoader } from "react-spinners";
 
-const Loading = ({ color }: any) => {
+const Loading = ({ color, className }: any) => {
   return (
-    <div className="flex items-center justify-center flex-1 w-full">
-      <Spinner
-        name="circle"
-        color={color}
-        fadeIn="none"
-        className="w-24 h-24"
-      />
+    <div
+      className={`flex items-center justify-center flex-1 w-full h-full ${className}`}
+    >
+      <PuffLoader color={color} size={100} />
     </div>
   );
 };

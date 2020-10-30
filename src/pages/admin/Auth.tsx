@@ -21,9 +21,9 @@ const Auth = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full h-full" dir="ltr">
+    <div className="flex items-center justify-center w-full h-full " dir="ltr">
       <div className="w-full c-gap-wrapper">
-        <div className="container flex flex-col p-5 bg-white border-4 border-black c-gap c-gap-5">
+        <div className="container flex flex-col p-5 text-black bg-white border-4 border-black c-gap c-gap-5">
           <TextBox
             label="Username"
             onChange={(e) => {

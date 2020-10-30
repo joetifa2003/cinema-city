@@ -34,7 +34,7 @@ const MovieItem = ({
             style={{ width: "100%", height: "100%" }}
           />
         </Ratio>
-        <div className="absolute top-0 left-0 z-10 w-full h-full p-2 py-5 bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
+        <div className="absolute top-0 left-0 z-10 w-full h-full p-5 bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
           <div className="mb-5">
             <div className="mb-2 font-bold text-white">النوع</div>
             <div className="c-gap-wrapper">
