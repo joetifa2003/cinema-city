@@ -55,7 +55,7 @@ const Movie = () => {
             <VideoDisplay link={`${movie.server_link}`} />
           </>
         ) : (
-          <Loading />
+          <Loading color="white" />
         )}
       </div>
     </div>

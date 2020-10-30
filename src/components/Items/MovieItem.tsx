@@ -17,7 +17,7 @@ const MovieItem = ({
 
   return (
     <div
-      className="relative w-full h-full transition-all duration-500 ease-in-out transform cursor-pointer hover:scale-110 group"
+      className="relative w-full h-full transition-all duration-500 ease-in-out transform cursor-pointer hover:scale-105 group"
       onClick={() => {
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);

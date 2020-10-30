@@ -21,12 +21,12 @@ const db = firebase.firestore()
 const st = firebase.storage()
 // const auth = firebase.auth()
 const fb = firebase
-db.enablePersistence()
-  .then(() => {
-    console.log('Offline support enabled')
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+// db.enablePersistence()
+//   .then(() => {
+//     console.log('Offline support enabled')
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })
 
 export { db, st, fb }

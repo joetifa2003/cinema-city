@@ -5,6 +5,7 @@ import debounce from "lodash/debounce";
 import { db } from "../firebase";
 import { useTransition, animated, config } from "react-spring";
 import MovieSeriesInterface from "../models/Movie";
+import Loading from "../components/Loading/Loading";
 
 const Home = () => {
   const [movies, setMovies] = useState<MovieSeriesInterface[]>([]);
@@ -12,6 +13,7 @@ const Home = () => {
   const setSearchStringLazy = debounce((value) => {
     setSearchString(value);
   }, 500);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (searchString) {
@@ -19,6 +21,7 @@ const Home = () => {
         .where("name_query", "array-contains", searchString.toLocaleLowerCase())
         .get()
         .then((snapshot) => {
+          setLoading(false);
           setMovies(
             snapshot.docs.map((doc) =>
               Object.assign(doc.data(), { id: doc.id })
@@ -29,6 +32,7 @@ const Home = () => {
       db.collection("MoviesSeries")
         .get()
         .then((snapshot) => {
+          setLoading(false);
           setMovies(
             snapshot.docs.map((doc) =>
               Object.assign(doc.data(), { id: doc.id })
@@ -60,12 +64,12 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <div className="container h-full">
+      <div className="container h-full pt-5">
         <div className="h-full">
           <div className="flex flex-wrap justify-between">
             <div className="mb-5 underline-title">الافلام و المسلسلات</div>
             <div className="w-full mb-5 md:w-1/3 md:mb-0">
-              <div className="relative flex items-center w-full p-2 border-2 border-black">
+              <div className="relative flex items-center w-full p-2 text-black border-2 border-white bg-bg">
                 <i
                   className="w-6 h-6 me-2 iconify"
                   data-icon="ant-design:search-outlined"
@@ -80,6 +84,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+          {loading ? <Loading color="black" /> : null}
           <div className="c-gap-wrapper">
             <div className="flex flex-wrap c-gap-padding c-gap-5">
               {movieTransition.map(({ item, props, key }) => (

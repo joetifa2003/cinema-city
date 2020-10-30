@@ -3,7 +3,7 @@ import "./Hero.css";
 
 const Hero = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center w-full mb-8 h-8/12 bg-primary">
+    <div className="relative flex flex-col items-center justify-center w-full h-8/12 bg-primary">
       <div className="hidden custom-shape-divider-bottom-1603030511 md:block">
         <svg
           data-name="Layer 1"
