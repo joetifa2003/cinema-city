@@ -99,3 +99,13 @@
     max-height: 100%;
   }
 }
+
+.clip {
+  clip-path: inset(50% 0% 50% 0%);
+  transition: all 0.5s ease-in-out;
+}
+
+.group:hover .clip {
+  clip-path: inset(0% 0% 0% 0%);
+  backdrop-filter: grayscale(100%) blur(2px);
+}

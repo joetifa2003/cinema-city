@@ -17,7 +17,7 @@ const MovieItem = ({
 
   return (
     <div
-      className="relative w-full h-full transition-all duration-500 transform cursor-pointer hover:scale-110 group"
+      className="relative w-full h-full transition-all duration-500 ease-in-out transform cursor-pointer hover:scale-110 group"
       onClick={() => {
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);
@@ -34,7 +34,7 @@ const MovieItem = ({
             style={{ width: "100%", height: "100%" }}
           />
         </Ratio>
-        <div className="absolute top-0 left-0 z-10 w-full h-full p-2 py-5 transition-all duration-500 bg-opacity-75 rounded-lg opacity-0 bg-primary-shades-600 group-hover:opacity-100">
+        <div className="absolute top-0 left-0 z-10 w-full h-full p-2 py-5 bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
           <div className="mb-5">
             <div className="mb-2 font-bold text-white">النوع</div>
             <div className="c-gap-wrapper">

@@ -55,6 +55,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/react-select": "^3.0.22",
     "autoprefixer": "^9.8.6",
+    "node-sass": "^4.14.1",
     "postcss-nested": "^5.0.1",
     "tailwindcss": "^1.9.4",
     "tailwindcss-rtl": "^0.6.0"
