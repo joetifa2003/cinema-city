@@ -148,7 +148,7 @@ const Series = () => {
             ) : null}
           </>
         ) : (
-          <Loading />
+          <Loading color="white" />
         )}
       </div>
     </div>

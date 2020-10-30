@@ -11,6 +11,7 @@ const Home = () => {
   const [movies, setMovies] = useState<MovieSeriesInterface[]>([]);
   const [searchString, setSearchString] = useState("");
   const setSearchStringLazy = debounce((value) => {
+    setLoading(true);
     setSearchString(value);
   }, 500);
   const [loading, setLoading] = useState(true);
@@ -84,7 +85,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {loading ? <Loading color="black" /> : null}
+          {loading ? <Loading color="white" /> : null}
           <div className="c-gap-wrapper">
             <div className="flex flex-wrap c-gap-padding c-gap-5">
               {movieTransition.map(({ item, props, key }) => (
