@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { db, fb } from "../../firebase";
-import MovieSeriesInterface, { Type } from "../../models/Movie";
 import AsyncSelect from "react-select/async";
 import TextBox from "../../components/UI/TextBox";
 import Swal from "sweetalert2";
+import MovieSeries, { Type } from "../../models/MovieSeries";
 
 const AddEpisode = () => {
-  const [series, setSeries] = useState<MovieSeriesInterface>();
+  const [series, setSeries] = useState<MovieSeries>();
   const [link, setLink] = useState("");
   const [download_link, setDownloadLink] = useState("");
   const [episode, setEpisode] = useState(0);
@@ -20,7 +20,7 @@ const AddEpisode = () => {
       .get();
 
     return snapshot.docs.map((doc) => ({
-      value: Object.assign(doc.data(), { id: doc.id }) as MovieSeriesInterface,
+      value: Object.assign(doc.data(), { id: doc.id }) as MovieSeries,
       label: doc.data().name,
     }));
   };

@@ -6,7 +6,9 @@ import Loading from "../components/Loading/Loading";
 import MetaTags from "../components/MetaTags/MetaTags";
 import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 import { db } from "../firebase";
-import MovieSeriesInterface, { Type, Episode } from "../models/Movie";
+import Episode from "../models/Episode";
+import { Type } from "../models/MovieSeries";
+import SeriesClass, { SeriesConverter } from "../models/SeriesClass";
 
 interface ParamTypes {
   id: string;
@@ -15,7 +17,7 @@ interface ParamTypes {
 const Series = () => {
   const { id } = useParams<ParamTypes>();
 
-  const [series, setSeries] = useState<MovieSeriesInterface>();
+  const [series, setSeries] = useState<SeriesClass>();
   const [episodes, setEpisodes] = useState<Episode[]>();
   const [currEpisode, setCurrEpisode] = useState<Episode>();
   const [lastEpisode, setLastEpisode] = useState<Episode>();
@@ -23,10 +25,11 @@ const Series = () => {
   useEffect(() => {
     db.collection("MoviesSeries")
       .doc(id)
+      .withConverter(SeriesConverter)
       .get()
       .then((doc) => {
-        const series: any = doc.data();
-        setSeries({ ...series });
+        const series = doc.data();
+        setSeries(series);
       });
 
     db.collection("MoviesSeries")

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import MovieSeriesInterface, { Type } from "../models/Movie";
 import MetaTags from "../components/MetaTags/MetaTags";
 import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
 import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 import Loading from "../components/Loading/Loading";
+import MovieClass, { MovieConverter } from "../models/MovieClass";
+import { Type } from "../models/MovieSeries";
 
 interface ParamTypes {
   id: string;
@@ -14,15 +15,16 @@ interface ParamTypes {
 const Movie = () => {
   const { id } = useParams<ParamTypes>();
 
-  const [movie, setMovie] = useState<MovieSeriesInterface>();
+  const [movie, setMovie] = useState<MovieClass>();
 
   useEffect(() => {
     db.collection("MoviesSeries")
       .doc(id)
+      .withConverter(MovieConverter)
       .get()
       .then((doc) => {
-        const movie: any = doc.data();
-        setMovie({ ...movie });
+        const movie = doc.data();
+        setMovie(movie);
       });
   });
 

@@ -3,12 +3,12 @@ import Hero from "../components/Hero/Hero";
 import MovieItem from "../components/Items/MovieItem";
 import debounce from "lodash/debounce";
 import { db } from "../firebase";
-import { useTransition, animated, config } from "react-spring";
-import MovieSeriesInterface from "../models/Movie";
+import { useTransition, animated } from "react-spring";
 import Loading from "../components/Loading/Loading";
+import MovieSeries, { MovieSeriesConverter } from "../models/MovieSeries";
 
 const Home = () => {
-  const [movies, setMovies] = useState<MovieSeriesInterface[]>([]);
+  const [movies, setMovies] = useState<MovieSeries[]>([]);
   const [searchString, setSearchString] = useState("");
   const setSearchStringLazy = debounce((value) => {
     setLoading(true);
@@ -20,6 +20,7 @@ const Home = () => {
     if (searchString) {
       db.collection("MoviesSeries")
         .where("name_query", "array-contains", searchString.toLocaleLowerCase())
+        .withConverter(MovieSeriesConverter)
         .get()
         .then((snapshot) => {
           setLoading(false);
@@ -31,6 +32,7 @@ const Home = () => {
         });
     } else {
       db.collection("MoviesSeries")
+        .withConverter(MovieSeriesConverter)
         .get()
         .then((snapshot) => {
           setLoading(false);
@@ -44,7 +46,10 @@ const Home = () => {
   }, [searchString]);
 
   const movieTransition = useTransition(movies, (movie) => movie?.id as any, {
-    config: config.stiff,
+    config: {
+      friction: 50,
+      tension: 500,
+    },
     from: {
       opacity: 0,
       transform: "rotateY(90deg)",
@@ -86,14 +91,7 @@ const Home = () => {
             </div>
           </div>
           {loading ? (
-            <div
-              className="absolute left-0 z-10 w-full h-full bg-black bg-opacity-25 top-16"
-              style={{
-                backdropFilter: "blur(5px)",
-              }}
-            >
-              <Loading color="white" />
-            </div>
+            <Loading color="white" className="absolute left-0 top-16" />
           ) : null}
           <div className="c-gap-wrapper">
             <div className="flex flex-wrap c-gap-padding c-gap-5">
@@ -110,6 +108,7 @@ const Home = () => {
                     year={item.year}
                     categories={item.categories}
                     warnings={item.warnings}
+                    type={item.type}
                   />
                 </animated.div>
               ))}

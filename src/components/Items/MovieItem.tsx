@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import MovieSeriesInterface, { Type } from "../../models/Movie";
 import Image from "react-graceful-image";
 import Ratio from "react-ratio";
+import { Type } from "../../models/MovieSeries";
 
 const MovieItem = ({
   img,
@@ -12,7 +12,15 @@ const MovieItem = ({
   warnings,
   id,
   type,
-}: MovieSeriesInterface) => {
+}: {
+  img: string;
+  name: string;
+  year: number;
+  categories: string[];
+  warnings: string[];
+  id: string;
+  type: Type;
+}) => {
   const history = useHistory();
 
   return (

@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import TextArea from "../../components/UI/TextArea";
 import TextBox from "../../components/UI/TextBox";
-import { db, fb } from "../../firebase";
+import { db, fb, st } from "../../firebase";
 import MultiSelect from "react-multi-select-component";
-import { Type } from "../../models/Movie";
+import { Type } from "../../models/MovieSeries";
 import Select from "react-select";
+import imageCompression from "browser-image-compression";
+import Loading from "../../components/Loading/Loading";
+const shortid = require("shortid");
 
 const AddMovie = () => {
   const [name, setName] = useState("");
-  const [img, setImage] = useState("");
+  const [img, setImage] = useState<File>();
   const [year, setYear] = useState("");
   const [desc, setDesc] = useState("");
   const [serverLink, setServerLink] = useState("");
@@ -21,6 +24,7 @@ const AddMovie = () => {
   const [country, setCountry] = useState("");
   const [warnings, setWarnings] = useState([]);
   const [type, setType] = useState(Type.MOVIE);
+  const [loading, setLoading] = useState(false);
   const categoriesOptions = [
     { value: "انمي", label: "انمي" },
     { value: "تركي", label: "تركي" },
@@ -72,12 +76,26 @@ const AddMovie = () => {
     return arr;
   };
 
-  const addMovie = () => {
-    db.collection("MoviesSeries")
-      .add({
+  const addMovie = async () => {
+    if (!img) return Swal.fire("No image selected", "", "error");
+    setLoading(true);
+
+    try {
+      const compressedImage = await imageCompression(img, {
+        maxSizeMB: 1,
+        useWebWorker: true,
+      });
+
+      const snapshot = await st
+        .ref(`${type}/${name}-${shortid.generate()}`)
+        .put(compressedImage);
+
+      const img_link = await snapshot.ref.getDownloadURL();
+
+      await db.collection("MoviesSeries").add({
         name,
         name_query: getQueryArray(name.toLocaleLowerCase()),
-        img,
+        img: img_link,
         year,
         desc,
         server_link: serverLink,
@@ -90,19 +108,19 @@ const AddMovie = () => {
         country,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
         type,
-      })
-      .then(
-        () => {
-          Swal.fire(
-            `${name} added successfully`,
-            `You can now watch ${name} on Cinema city`,
-            "success"
-          );
-        },
-        (error: any) => {
-          Swal.fire(`Error!`, `Error ${error}`, "error");
-        }
+      });
+
+      setLoading(false);
+
+      Swal.fire(
+        `${name} added successfully`,
+        `You can now watch ${name} on Cinema city`,
+        "success"
       );
+    } catch (error) {
+      setLoading(false);
+      Swal.fire(`Error!`, `Error ${Object.values(error)}`, "error");
+    }
   };
 
   return (
@@ -110,9 +128,35 @@ const AddMovie = () => {
       className="flex flex-col items-center justify-center w-full min-h-full p-5"
       dir="ltr"
     >
-      <div className="container p-5 text-black bg-white border-4 border-black">
+      <div className="container relative p-5 text-black bg-white border-4 border-black">
+        {loading && (
+          <div className="absolute top-0 left-0 z-10 w-full h-full bg-opacity-75 bg-primary">
+            <Loading color="white" className="h-full" />
+          </div>
+        )}
         <div className="mb-8 c-gap-wrapper">
           <div className="flex flex-row flex-wrap c-gap-padding c-gap-8">
+            <div className="w-full md:w-1/2">
+              <div className="mb-2 font-bold">Image</div>
+              <input
+                type="file"
+                name="Image"
+                id="image"
+                accept="image/*"
+                onChange={(e) => {
+                  if (!e.target.files) return;
+                  setImage(e.target.files[0]);
+                }}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <TextBox
+                label="Movie name"
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+            </div>
             <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Type</div>
               <div style={{ direction: "ltr" }}>
@@ -136,22 +180,6 @@ const AddMovie = () => {
                   }}
                 />
               </div>
-            </div>
-            <div className="w-full md:w-1/2">
-              <TextBox
-                label="Movie name"
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
-            </div>
-            <div className="w-full md:w-1/2">
-              <TextBox
-                label="Image url"
-                onChange={(event) => {
-                  setImage(event.target.value);
-                }}
-              />
             </div>
             <div className="w-full md:w-1/2">
               <TextBox
