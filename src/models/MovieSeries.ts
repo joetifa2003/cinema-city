@@ -12,6 +12,7 @@ export default class MovieSeries extends Base {
     timestamp: firebase.firestore.Timestamp,
     public name: string,
     public img: string,
+    public img_name: string,
     public desc: string,
     public year: number,
     public categories: string[],

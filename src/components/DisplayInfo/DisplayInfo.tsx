@@ -25,7 +25,7 @@ const DisplayInfo = ({
 }: PropTypes) => {
   return (
     <div className="flex flex-col mb-5 md:flex-row">
-      <div className="flex justify-center mb-5 me-5 md:mb-0" data-aos="fade">
+      <div className="flex justify-center mb-5 me-5 md:mb-0">
         <Ratio ratio={0.69} className="w-64 min-w-64">
           <Image
             alt={name}

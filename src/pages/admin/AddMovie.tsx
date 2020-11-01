@@ -86,9 +86,9 @@ const AddMovie = () => {
         useWebWorker: true,
       });
 
-      const snapshot = await st
-        .ref(`${type}/${name}-${shortid.generate()}`)
-        .put(compressedImage);
+      const imageName = `${type}/${name}-${shortid.generate()}`;
+
+      const snapshot = await st.ref(imageName).put(compressedImage);
 
       const img_link = await snapshot.ref.getDownloadURL();
 
@@ -96,6 +96,7 @@ const AddMovie = () => {
         name,
         name_query: getQueryArray(name.toLocaleLowerCase()),
         img: img_link,
+        image_name: imageName,
         year,
         desc,
         server_link: serverLink,
