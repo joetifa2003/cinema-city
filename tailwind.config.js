@@ -525,6 +525,7 @@ module.exports = {
       30: "30",
       40: "40",
       50: "50",
+      hidden: "-1",
     },
     gap: (theme) => theme("spacing"),
     gridTemplateColumns: {
@@ -719,6 +720,8 @@ module.exports = {
       in: "cubic-bezier(0.4, 0, 1, 1)",
       out: "cubic-bezier(0, 0, 0.2, 1)",
       "in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "out-cubic": "cubic-bezier(0.33, 1, 0.68, 1)",
+      InOutQuint: "cubic-bezier(0.83, 0, 0.17, 1)",
     },
     transitionDuration: {
       75: "75ms",

@@ -52,7 +52,7 @@ const DisplayInfo = ({
               },
               {
                 name: "المده",
-                value: length,
+                value: `دقيقه ${length}`,
                 icon: "bx:bx-time",
               },
               {

@@ -17,13 +17,7 @@ body,
 #root {
   @apply bg-primary-shades-600 text-white;
   height: 100%;
-  padding-top: 125px;
-}
-
-@screen md {
-  #root {
-    padding-top: 61px;
-  }
+  padding-top: 61px;
 }
 
 .container {
