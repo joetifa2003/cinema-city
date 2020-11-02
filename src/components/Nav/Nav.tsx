@@ -5,11 +5,15 @@ import { animated, useSpring } from "react-spring";
 const Nav = () => {
   const links = ["افلام اجنبي", "افلام عربي", "مسلسلات تركي", "انمي"];
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuSpring = useSpring({
+  const [menuSpring, setMenuSpring] = useSpring(() => ({
     config: {
       tension: 210,
       friction: 40,
     },
+    transform: "translateX(-100%)",
+  }));
+
+  setMenuSpring({
     transform: menuOpen ? "translateX(0%)" : "translateX(-100%)",
   });
 
@@ -36,9 +40,6 @@ const Nav = () => {
           }}
           className="fixed top-0 left-0 w-full h-full bg-opacity-75 bg-primary-shades-600"
           style={{
-            ...{
-              backdropFilter: "blur(5px)",
-            },
             ...menuSpring,
           }}
         ></animated.div>
