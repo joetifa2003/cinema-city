@@ -1,9 +1,89 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import DropDown from "../UI/DropDown";
 
 const Nav = () => {
-  const links = ["افلام اجنبي", "افلام عربي", "مسلسلات تركي", "انمي"];
+  const links = [
+    {
+      name: "تركي",
+      options: [
+        {
+          name: "افلام تركي",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات تركي",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
+      name: "اجنبي",
+      options: [
+        {
+          name: "افلام اجنبي",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات اجنبي",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
+      name: "عربي",
+      options: [
+        {
+          name: "افلام عربي",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات عربي",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
+      name: "انمي",
+      options: [
+        {
+          name: "افلام انمي",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات انمي",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
+      name: "دراما",
+      options: [
+        {
+          name: "افلام دراما",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات دراما",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
+      name: "اكشن",
+      options: [
+        {
+          name: "افلام اكشن",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات اكشن",
+          onClick: () => {},
+        },
+      ],
+    },
+  ];
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuSpring, setMenuSpring] = useSpring(() => ({
     config: {
@@ -52,12 +132,7 @@ const Nav = () => {
         <div className="hidden md:table c-gap-wrapper">
           <div className="flex h-full c-gap c-gap-x-2">
             {links.map((v, i) => (
-              <button
-                key={i}
-                className="h-full p-2 font-bold hover:bg-purple-900"
-              >
-                {v}
-              </button>
+              <DropDown name={v.name} options={v.options} />
             ))}
           </div>
         </div>

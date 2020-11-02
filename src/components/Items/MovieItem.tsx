@@ -95,7 +95,7 @@ const MovieItem = ({
           </div>
         </animated.div>
       </div>
-      <div className="absolute top-0 right-0 w-20 px-2 py-2 text-sm font-bold text-white bg-primary rounded-e-full">
+      <div className="absolute top-0 right-0 w-20 px-2 py-2 text-sm font-bold text-white rounded-l-full bg-primary">
         {type === Type.MOVIE ? "فيلم" : "مسلسل"}
       </div>
 
