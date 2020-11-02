@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Image from "react-graceful-image";
 import Ratio from "react-ratio";
 import { Type } from "../../models/MovieSeries";
-import { animated, useSpring } from "react-spring";
 
 const MovieItem = ({
   img,
@@ -23,7 +22,6 @@ const MovieItem = ({
   type: Type;
 }) => {
   const history = useHistory();
-  const [hoverd, setHoverd] = useState(false);
 
   return (
     <div
@@ -32,8 +30,6 @@ const MovieItem = ({
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);
       }}
-      onMouseOver={() => setHoverd(true)}
-      onMouseOut={() => setHoverd(false)}
     >
       <div className="relative w-full">
         <Ratio ratio={0.69}>
