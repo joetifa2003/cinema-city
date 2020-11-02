@@ -58,7 +58,7 @@ const DropDown = ({
       >
         {options.map((item, index) => (
           <button
-            className="block my-2 font-bold"
+            className="block w-full p-2 my-2 font-bold rounded-md hover:bg-purple-900 text-start"
             key={index}
             style={{
               width: "max-content",
