@@ -121,18 +121,25 @@ const Nav = () => {
           className="fixed top-0 left-0 w-full h-full bg-opacity-75 bg-primary-shades-600"
           style={{
             ...menuSpring,
+            ...{
+              backdropFilter: "blur(5px)",
+            },
           }}
         ></animated.div>
         <animated.div
-          className="fixed top-0 left-0 w-2/3 h-screen bg-primary"
+          className="fixed top-0 left-0 w-1/2 h-screen bg-primary"
           style={{
             ...menuSpring,
           }}
-        ></animated.div>
+        >
+          {links.map((v, i) => (
+            <DropDown name={v.name} options={v.options} float={false} />
+          ))}
+        </animated.div>
         <div className="hidden md:table c-gap-wrapper">
           <div className="flex h-full c-gap c-gap-x-2">
             {links.map((v, i) => (
-              <DropDown name={v.name} options={v.options} />
+              <DropDown name={v.name} options={v.options} float={true} />
             ))}
           </div>
         </div>

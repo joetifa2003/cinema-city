@@ -5,9 +5,11 @@ import { animated } from "react-spring";
 const DropDown = ({
   name,
   options,
+  float,
 }: {
   name: string;
   options: { name: string; onClick: () => void }[];
+  float: boolean;
 }) => {
   const [mainHoverd, setMainHoverd] = useState(false);
   const [contentHoverd, setContetnHoverd] = useState(false);
@@ -30,7 +32,7 @@ const DropDown = ({
   });
 
   return (
-    <div className="relative h-full">
+    <div className="relative">
       <button
         className="flex items-center justify-center p-2 font-bold hover:bg-purple-900"
         onMouseOver={() => setMainHoverd(true)}
@@ -44,7 +46,9 @@ const DropDown = ({
         ></span>
       </button>
       <animated.div
-        className={`absolute left-0 px-5 overflow-hidden top-full bg-primary rounded-b-xl`}
+        className={`${
+          float && "absolute"
+        } px-5 overflow-hidden top-full bg-primary rounded-b-xl`}
         ref={ref}
         style={{
           ...dropDownSpring,
