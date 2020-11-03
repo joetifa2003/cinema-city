@@ -107,7 +107,7 @@ const DisplayInfo = ({
               </div>
             </div>
             <div>
-              <div className="mb-2 text-xl font-bold text-white">التحذيرات</div>
+              <div className="mb-2 text-xl font-bold text-white">التصنيف</div>
               <div className="c-gap-wrapper">
                 <div className="flex flex-wrap c-gap-padding c-gap-2">
                   {warnings?.map((warning, index) => (

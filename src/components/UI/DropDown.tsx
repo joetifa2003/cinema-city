@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { config, useSpring } from "react-spring";
 import { animated } from "react-spring";
 
@@ -20,7 +20,7 @@ const DropDown = ({
 
   const hovered = mainHoverd || contentHoverd;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHeight(ref.current.clientHeight);
   }, []);
 
