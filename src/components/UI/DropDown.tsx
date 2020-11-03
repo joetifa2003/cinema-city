@@ -6,10 +6,12 @@ const DropDown = ({
   name,
   options,
   float,
+  className,
 }: {
   name: string;
   options: { name: string; onClick: () => void }[];
   float: boolean;
+  className?: string;
 }) => {
   const [mainHoverd, setMainHoverd] = useState(false);
   const [contentHoverd, setContetnHoverd] = useState(false);
@@ -32,11 +34,12 @@ const DropDown = ({
   });
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`}>
       <button
-        className="flex items-center justify-center p-2 font-bold hover:bg-purple-900"
+        className="flex items-center justify-center w-full p-2 font-bold hover:bg-purple-900"
         onMouseOver={() => setMainHoverd(true)}
         onMouseOut={() => setMainHoverd(false)}
+        onClick={() => setMainHoverd((prev) => !prev)}
       >
         {name}
         <span

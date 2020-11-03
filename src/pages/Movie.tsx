@@ -55,6 +55,21 @@ const Movie = () => {
               <VideoDisplay link={`${movie?.trailer}`} />
             </div>
             <VideoDisplay link={`${movie.server_link}`} />
+            <div>
+              <button
+                className="flex items-center bg-red-600 btn-primary"
+                onClick={() => {
+                  window.open(movie?.download_link, "_blank");
+                }}
+              >
+                {`حمل الفيلم الان`}
+                <span
+                  className="text-2xl iconify ms-2"
+                  data-icon="bi:arrow-down-circle-fill"
+                  data-inline="false"
+                ></span>
+              </button>
+            </div>
           </>
         ) : (
           <Loading color="white" />

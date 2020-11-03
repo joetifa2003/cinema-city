@@ -133,7 +133,12 @@ const Nav = () => {
           }}
         >
           {links.map((v, i) => (
-            <DropDown name={v.name} options={v.options} float={false} />
+            <DropDown
+              name={v.name}
+              options={v.options}
+              float={false}
+              className="w-full"
+            />
           ))}
         </animated.div>
         <div className="hidden md:table c-gap-wrapper">
