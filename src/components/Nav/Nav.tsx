@@ -45,6 +45,19 @@ const Nav = () => {
       ],
     },
     {
+      name: "كوري",
+      options: [
+        {
+          name: "افلام كوري",
+          onClick: () => {},
+        },
+        {
+          name: "مسلسلات كوري",
+          onClick: () => {},
+        },
+      ],
+    },
+    {
       name: "انمي",
       options: [
         {
@@ -101,7 +114,7 @@ const Nav = () => {
     <header className="fixed top-0 left-0 z-50 w-full text-white shadow-2xl bg-primary">
       <nav className="container flex items-center justify-between py-5 md:py-2">
         <Link to="/" className="text-3xl font-bold text-white">
-          Cinema City
+          <span className="">Cinema</span> City
         </Link>
         <button onClick={() => setMenuOpen((prev) => !prev)}>
           <span

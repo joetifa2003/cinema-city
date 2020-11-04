@@ -156,6 +156,7 @@ const AddMovie = () => {
                 onChange={(event) => {
                   setName(event.target.value);
                 }}
+                value={name}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -188,6 +189,7 @@ const AddMovie = () => {
                 onChange={(event) => {
                   setYear(event.target.value);
                 }}
+                value={year}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -223,6 +225,7 @@ const AddMovie = () => {
                 onChange={(event) => {
                   setImdb(parseInt(event.target.value));
                 }}
+                value={imdb + ""}
               />
             </div>
             {type === Type.MOVIE ? (
@@ -233,6 +236,7 @@ const AddMovie = () => {
                     onChange={(event) => {
                       setLength(parseInt(event.target.value));
                     }}
+                    value={length + ""}
                   />
                 </div>
                 <div className="w-full md:w-1/2">
@@ -241,6 +245,7 @@ const AddMovie = () => {
                     onChange={(event) => {
                       setServerLink(event.target.value);
                     }}
+                    value={serverLink}
                   />
                 </div>
                 <div className="w-full md:w-1/2">
@@ -249,6 +254,7 @@ const AddMovie = () => {
                     onChange={(event) => {
                       setDownloadLink(event.target.value);
                     }}
+                    value={download_link}
                   />
                 </div>
               </>
@@ -259,6 +265,7 @@ const AddMovie = () => {
                 onChange={(event) => {
                   setTrailer(event.target.value);
                 }}
+                value={trailer}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -286,6 +293,7 @@ const AddMovie = () => {
           <button
             className="p-5 text-white rounded-xl bg-primary ripple-bg-purple-900"
             onClick={addMovie}
+            type="button"
           >
             Add movie
           </button>

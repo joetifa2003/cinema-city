@@ -74,6 +74,7 @@ const AddEpisode = () => {
                 onChange={(e) => {
                   setEpisode(parseInt(e.target.value));
                 }}
+                value={episode + ""}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -82,6 +83,7 @@ const AddEpisode = () => {
                 onChange={(e) => {
                   setLink(e.target.value);
                 }}
+                value={link}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -90,6 +92,7 @@ const AddEpisode = () => {
                 onChange={(e) => {
                   setDownloadLink(e.target.value);
                 }}
+                value={download_link}
               />
             </div>
           </div>

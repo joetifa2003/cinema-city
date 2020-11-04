@@ -32,7 +32,9 @@ const Series = () => {
           const series = doc.data();
           return series;
         }),
-    {}
+    {
+      refreshDeps: [id],
+    }
   );
 
   useEffect(() => {

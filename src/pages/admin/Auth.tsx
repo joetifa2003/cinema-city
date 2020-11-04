@@ -29,12 +29,14 @@ const Auth = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
+            value={username}
           />
           <TextBox
             label="Password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            value={password}
           />
           <div>
             <button onClick={login} className="btn-primary">

@@ -27,7 +27,9 @@ const Movie = () => {
           const movie = doc.data();
           return movie;
         }),
-    {}
+    {
+      refreshDeps: [id],
+    }
   );
 
   return (
