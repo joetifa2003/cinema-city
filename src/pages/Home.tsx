@@ -6,6 +6,8 @@ import { db } from "../firebase";
 import { useTransition, animated } from "react-spring";
 import Loading from "../components/Loading/Loading";
 import MovieSeries, { MovieSeriesConverter } from "../models/MovieSeries";
+import MetaTags from "../components/MetaTags/MetaTags";
+import Cover from "../assets/Cover.jpg";
 
 const Home = () => {
   const [movies, setMovies] = useState<MovieSeries[]>([]);
@@ -69,6 +71,11 @@ const Home = () => {
 
   return (
     <>
+      <MetaTags
+        title="Cinema City | شاهد جميع الافلام و المسلسلات المترجمه الان"
+        desc="موقع سينما سيتي لمساهده الافلام و المسلسلات مترجمه باللغة العربيه"
+        img={`${Cover}`}
+      />
       <Hero />
       <div className="container h-full pt-5">
         <div className="relative h-full">
