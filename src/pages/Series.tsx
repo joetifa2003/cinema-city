@@ -10,6 +10,7 @@ import { db } from "../firebase";
 import Episode from "../models/Episode";
 import { Type } from "../models/MovieSeries";
 import { SeriesConverter } from "../models/SeriesClass";
+import { FacebookProvider, Comments } from "react-facebook";
 
 interface ParamTypes {
   id: string;
@@ -144,7 +145,7 @@ const Series = () => {
                 </div>
                 <div>
                   <button
-                    className="flex items-center bg-red-600 btn-primary"
+                    className="flex items-center mb-5 bg-red-600 btn-primary"
                     onClick={() => {
                       window.open(currEpisode?.download_link, "_blank");
                     }}
@@ -159,6 +160,18 @@ const Series = () => {
                 </div>
               </>
             ) : null}
+            <div className="mb-5 text-3xl font-bold border-white">
+              التعليقات
+            </div>
+            <div className="bg-white">
+              <FacebookProvider appId="399996854356097">
+                <Comments
+                  href={window.location.href}
+                  width="100%"
+                  colorScheme="light"
+                />
+              </FacebookProvider>
+            </div>
           </>
         )}
       </div>

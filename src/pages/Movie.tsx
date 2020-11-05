@@ -8,6 +8,7 @@ import Loading from "../components/Loading/Loading";
 import { MovieConverter } from "../models/MovieClass";
 import { Type } from "../models/MovieSeries";
 import { useRequest } from "ahooks";
+import { FacebookProvider, Comments } from "react-facebook";
 
 interface ParamTypes {
   id: string;
@@ -65,7 +66,7 @@ const Movie = () => {
             <VideoDisplay link={`${movie.data.server_link}`} />
             <div>
               <button
-                className="flex items-center bg-red-600 btn-primary"
+                className="flex items-center mb-5 bg-red-600 btn-primary"
                 onClick={() => {
                   window.open(movie.data?.download_link, "_blank");
                 }}
@@ -77,6 +78,18 @@ const Movie = () => {
                   data-inline="false"
                 ></span>
               </button>
+            </div>
+            <div className="mb-5 text-3xl font-bold border-white">
+              التعليقات
+            </div>
+            <div className="bg-white">
+              <FacebookProvider appId="399996854356097">
+                <Comments
+                  href={window.location.href}
+                  width="100%"
+                  colorScheme="light"
+                />
+              </FacebookProvider>
             </div>
           </>
         )}
