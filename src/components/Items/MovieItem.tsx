@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Image from "react-graceful-image";
 import Ratio from "react-ratio";
 import { Type } from "../../models/MovieSeries";
 import { animated, useSpring } from "react-spring";
+import Zoom from "react-reveal/Zoom";
 
 const MovieItem = ({
   img,
@@ -48,14 +48,17 @@ const MovieItem = ({
     >
       <div className="relative w-full">
         <Ratio ratio={0.69}>
-          <Image
-            className="rounded-lg shadow-xl"
-            alt="Movie 1 (2020)"
-            src={img}
-            width="100%"
-            height="100%"
-            style={{ width: "100%", height: "100%" }}
-          />
+          <Zoom duration={500}>
+            <img
+              loading="lazy"
+              src={img}
+              alt={`${name} (${year})`}
+              className="rounded-lg shadow-xl"
+              width="100%"
+              height="100%"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Zoom>
         </Ratio>
         <animated.div
           className="absolute top-0 left-0 z-10 w-full h-full p-5 bg-opacity-75 rounded-lg bg-primary-shades-600"
@@ -104,4 +107,4 @@ const MovieItem = ({
   );
 };
 
-export default React.memo(MovieItem);
+export default MovieItem;

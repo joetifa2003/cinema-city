@@ -38,6 +38,7 @@ const Home = () => {
         return db
           .collection("MoviesSeries")
           .withConverter(MovieSeriesConverter)
+          .orderBy("timestamp", "desc")
           .get()
           .then((snapshot) => {
             const movies = snapshot.docs.map((doc) =>
