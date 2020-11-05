@@ -43,7 +43,6 @@ const Home = () => {
             const movies = snapshot.docs.map((doc) =>
               Object.assign(doc.data(), { id: doc.id })
             );
-            console.log(movies);
             return movies;
           });
       }
@@ -55,7 +54,7 @@ const Home = () => {
 
   const movieTransition = useTransition(
     movies.data || [],
-    (movie) => movie?.id as any,
+    (movie) => movie.id,
     {
       config: {
         friction: 50,
@@ -64,17 +63,17 @@ const Home = () => {
       from: {
         opacity: 0,
         transform: "rotateY(90deg)",
-        filter: "blur(5px)",
+        filter: "grayscale(100%)",
       },
       enter: {
         opacity: 1,
         transform: "rotateY(0deg)",
-        filter: "blur(0px)",
+        filter: "grayscale(0%)",
       },
       leave: {
         opacity: 0,
         transform: "rotateY(90deg)",
-        filter: "blur(5px)",
+        filter: "grayscale(100%)",
       },
     }
   );

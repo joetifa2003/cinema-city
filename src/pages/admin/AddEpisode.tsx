@@ -9,7 +9,7 @@ const AddEpisode = () => {
   const [series, setSeries] = useState<MovieSeries>();
   const [link, setLink] = useState("");
   const [download_link, setDownloadLink] = useState("");
-  const [episode, setEpisode] = useState(0);
+  const [episode, setEpisode] = useState("");
   const [value, setValue] = useState("");
 
   const loadSeries = async () => {
@@ -34,7 +34,7 @@ const AddEpisode = () => {
         series_id: series.id,
         link,
         download_link,
-        episode,
+        episode: parseInt(episode),
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
       })
       .then(() =>
@@ -72,9 +72,9 @@ const AddEpisode = () => {
               <TextBox
                 label="Episode number"
                 onChange={(e) => {
-                  setEpisode(parseInt(e.target.value));
+                  setEpisode(e.target.value);
                 }}
-                value={episode + ""}
+                value={episode}
               />
             </div>
             <div className="w-full md:w-1/2">

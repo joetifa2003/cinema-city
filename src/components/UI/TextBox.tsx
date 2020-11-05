@@ -6,7 +6,7 @@ const TextBox = ({
   onChange,
 }: {
   label: string;
-  value: string;
+  value: any;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (

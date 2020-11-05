@@ -19,8 +19,8 @@ const AddMovie = () => {
   const [download_link, setDownloadLink] = useState("");
   const [categories, setCategories] = useState([]);
   const [trailer, setTrailer] = useState("");
-  const [imdb, setImdb] = useState<number>();
-  const [length, setLength] = useState<number>(0);
+  const [imdb, setImdb] = useState("0");
+  const [length, setLength] = useState("0");
   const [country, setCountry] = useState("");
   const [warnings, setWarnings] = useState([]);
   const [type, setType] = useState(Type.MOVIE);
@@ -104,8 +104,8 @@ const AddMovie = () => {
         categories: categories.map((categorie: any) => categorie.value),
         warnings: warnings.map((warning: any) => warning.value),
         trailer,
-        imdb,
-        length,
+        imdb: parseFloat(imdb),
+        length: parseInt(length),
         country,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
         type,
@@ -223,9 +223,9 @@ const AddMovie = () => {
               <TextBox
                 label="IMDB"
                 onChange={(event) => {
-                  setImdb(parseInt(event.target.value));
+                  setImdb(event.target.value);
                 }}
-                value={imdb + ""}
+                value={imdb}
               />
             </div>
             {type === Type.MOVIE ? (
@@ -234,9 +234,9 @@ const AddMovie = () => {
                   <TextBox
                     label="Length"
                     onChange={(event) => {
-                      setLength(parseInt(event.target.value));
+                      setLength(event.target.value);
                     }}
-                    value={length + ""}
+                    value={length}
                   />
                 </div>
                 <div className="w-full md:w-1/2">
