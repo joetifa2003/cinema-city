@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Ratio from "react-ratio";
 import { Type } from "../../models/MovieSeries";
-import { animated, useSpring } from "react-spring";
 import Zoom from "react-reveal/Zoom";
 
 const MovieItem = ({
@@ -23,18 +22,6 @@ const MovieItem = ({
   type: Type;
 }) => {
   const history = useHistory();
-  const [hoverd, setHoverd] = useState(false);
-  const [overlaySpring, setOverlaySpring] = useSpring(() => ({
-    config: {
-      tension: 100,
-      friction: 20,
-    },
-    clipPath: "circle(0% at 50% 50%)",
-  }));
-
-  setOverlaySpring({
-    clipPath: hoverd ? "circle(100% at 50% 50%)" : "circle(0% at 50% 50%)",
-  });
 
   return (
     <div
@@ -43,8 +30,6 @@ const MovieItem = ({
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);
       }}
-      onMouseOver={() => setHoverd(true)}
-      onMouseOut={() => setHoverd(false)}
     >
       <div className="relative w-full">
         <Ratio ratio={0.69}>
@@ -56,16 +41,11 @@ const MovieItem = ({
               className="rounded-lg shadow-xl"
               width="100%"
               height="100%"
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </Zoom>
         </Ratio>
-        <animated.div
-          className="absolute top-0 left-0 z-10 w-full h-full p-5 bg-opacity-75 rounded-lg bg-primary-shades-600"
-          style={{
-            ...overlaySpring,
-          }}
-        >
+        <div className="absolute top-0 left-0 z-10 w-full h-full p-5 bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
           <div className="mb-5">
             <div className="mb-2 font-bold text-white">النوع</div>
             <div className="c-gap-wrapper">
@@ -96,7 +76,7 @@ const MovieItem = ({
               </div>
             </div>
           </div>
-        </animated.div>
+        </div>
       </div>
       <div className="absolute top-0 right-0 w-20 px-2 py-2 text-sm font-bold text-white rounded-l-full bg-primary">
         {type === Type.MOVIE ? "فيلم" : "مسلسل"}
