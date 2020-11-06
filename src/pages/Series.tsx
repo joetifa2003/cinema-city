@@ -18,9 +18,10 @@ interface ParamTypes {
 
 const Series = () => {
   const { id } = useParams<ParamTypes>();
-  const [episodes, setEpisodes] = useState<Episode[]>();
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [currEpisode, setCurrEpisode] = useState<Episode>();
   const [lastEpisode, setLastEpisode] = useState<Episode>();
+  const [hasMore, setHasMore] = useState(true);
 
   const series = useRequest(
     () =>
@@ -48,6 +49,10 @@ const Series = () => {
       .then((snapshot) => {
         const episodes = snapshot.docs.map((doc) => doc.data()) as Episode[];
 
+        if (episodes.length < 4) {
+          setHasMore(false);
+        }
+
         setEpisodes(episodes);
         setCurrEpisode(episodes[0]);
         setLastEpisode(episodes[episodes.length - 1]);
@@ -65,8 +70,12 @@ const Series = () => {
       .then((snapshot) => {
         const episodes = snapshot.docs.map((doc) => doc.data()) as Episode[];
 
-        setEpisodes((prev) => [...(prev as any), ...episodes]);
-        setLastEpisode(episodes[episodes.length - 1]);
+        if (episodes.length !== 0) {
+          setEpisodes((prev) => [...(prev as any), ...episodes]);
+          setLastEpisode(episodes[episodes.length - 1]);
+        } else {
+          setHasMore(false);
+        }
       });
   };
 
@@ -103,46 +112,34 @@ const Series = () => {
             {currEpisode ? (
               <>
                 <VideoDisplay link={`${currEpisode?.link}`} />
-                <div
+                <InfiniteScroll
                   className="overflow-x-hidden overflow-y-auto c-gap-wrapper bg-primary-shades-600"
-                  style={{
-                    maxHeight: "260px",
-                  }}
-                  id="scrollableDiv"
+                  height={180}
+                  dataLength={episodes.length}
+                  hasMore={hasMore}
+                  next={loadEpisodes}
+                  loader={<Loading color="white" size={50} />}
+                  scrollableTarget="scrollableDiv"
+                  style={{ overflow: "hidden" }}
                 >
-                  <InfiniteScroll
-                    dataLength={episodes?.length || 0}
-                    hasMore={
-                      lastEpisode != null && (episodes?.length as number) > 1
-                    }
-                    next={loadEpisodes}
-                    loader={
-                      <div className="mb-5 text-lg font-bold text-white ms-5">
-                        جاري التحميل
+                  <div className="flex flex-col p-5 c-gap c-gap-3">
+                    {episodes?.map((v, i) => (
+                      <div
+                        key={i}
+                        className={`p-3 font-bold text-white bg-primary rounded-e-lg ${
+                          currEpisode?.episode === v.episode
+                            ? "bg-primary-shades-400"
+                            : ""
+                        } hover:bg-primary-shades-400 cursor-pointer`}
+                        onClick={() => {
+                          setCurrEpisode(v);
+                        }}
+                      >
+                        حلقه {`${v.episode}`}
                       </div>
-                    }
-                    scrollableTarget="scrollableDiv"
-                    style={{ overflow: "hidden" }}
-                  >
-                    <div className="flex flex-col p-5 c-gap c-gap-3">
-                      {episodes?.map((v, i) => (
-                        <div
-                          key={i}
-                          className={`p-3 font-bold text-white bg-primary rounded-e-lg ${
-                            currEpisode?.episode === v.episode
-                              ? "bg-primary-shades-400"
-                              : ""
-                          } hover:bg-primary-shades-400 cursor-pointer`}
-                          onClick={() => {
-                            setCurrEpisode(v);
-                          }}
-                        >
-                          حلقه {`${v.episode}`}
-                        </div>
-                      ))}
-                    </div>
-                  </InfiniteScroll>
-                </div>
+                    ))}
+                  </div>
+                </InfiniteScroll>
                 <div>
                   <button
                     className="flex items-center mb-5 bg-red-600 btn-primary"

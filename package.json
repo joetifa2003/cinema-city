@@ -61,6 +61,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/react-select": "^3.0.22",
     "autoprefixer": "^9.8.6",
+    "cra-bundle-analyzer": "^0.1.0",
     "node-sass": "^4.14.1",
     "postcss-nested": "^5.0.1",
     "stylelint-config-recommended": "^3.0.0",
