@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { useHistory } from "react-router-dom";
-import TextBox from "../../components/UI/TextBox";
 import { ls } from "../../utility/LocalStorage";
+
+const TextBox = lazy(() => import("../../components/UI/TextBox"));
 
 const Auth = () => {
   const history = useHistory();

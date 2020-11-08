@@ -1,5 +1,4 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
   const history = useHistory();
