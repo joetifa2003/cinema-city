@@ -1,17 +1,14 @@
-import React, { lazy } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
+import MetaTags from "../components/MetaTags/MetaTags";
+import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
+import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
+import Loading from "../components/Loading/Loading";
 import { MovieConverter } from "../models/MovieClass";
 import { Type } from "../models/MovieSeries";
 import { useRequest } from "ahooks";
 import { FacebookProvider, Comments } from "react-facebook";
-
-const DisplayInfo = lazy(() => import("../components/DisplayInfo/DisplayInfo"));
-const Loading = lazy(() => import("../components/Loading/Loading"));
-const MetaTags = lazy(() => import("../components/MetaTags/MetaTags"));
-const VideoDisplay = lazy(
-  () => import("../components/VideoDisplay/VideoDisplay")
-);
 
 interface ParamTypes {
   id: string;

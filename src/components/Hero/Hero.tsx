@@ -1,8 +1,7 @@
-import React, { memo, lazy } from "react";
+import React from "react";
 import "./Hero.css";
+import Fade from "react-reveal/Fade";
 import Background from "../../assets/Hero.jpg";
-
-const Fade = lazy(() => import("react-reveal/Fade"));
 
 const Hero = () => {
   return (
@@ -44,4 +43,4 @@ const Hero = () => {
   );
 };
 
-export default memo(Hero);
+export default React.memo(Hero);

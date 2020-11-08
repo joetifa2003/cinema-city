@@ -1,9 +1,8 @@
-import React, { lazy } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import Ratio from "react-ratio";
 import { Type } from "../../models/MovieSeries";
-
-const Zoom = lazy(() => import("react-reveal/Zoom"));
-const Ratio = lazy(() => import("react-ratio"));
+import Zoom from "react-reveal/Zoom";
 
 const MovieItem = ({
   img,

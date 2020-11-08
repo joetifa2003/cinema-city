@@ -1,6 +1,5 @@
-import React, { memo, lazy } from "react";
-
-const Ratio = lazy(() => import("react-ratio"));
+import React from "react";
+import Ratio from "react-ratio";
 
 interface PropTypes {
   name: string;
@@ -132,4 +131,4 @@ const DisplayInfo = ({
   );
 };
 
-export default memo(DisplayInfo);
+export default React.memo(DisplayInfo);

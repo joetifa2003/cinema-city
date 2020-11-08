@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 
 interface PropTypes {
   link: string;
@@ -34,4 +34,4 @@ const VideoDisplay = ({ link }: PropTypes) => {
   );
 };
 
-export default memo(VideoDisplay);
+export default React.memo(VideoDisplay);

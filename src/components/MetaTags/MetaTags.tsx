@@ -1,6 +1,5 @@
-import React, { memo, lazy } from "react";
-
-const Helmet = lazy(() => import("react-helmet/es/Helmet"));
+import React from "react";
+import { Helmet } from "react-helmet";
 
 const MetaTags = ({
   title,
@@ -30,4 +29,4 @@ const MetaTags = ({
   );
 };
 
-export default memo(MetaTags);
+export default React.memo(MetaTags);

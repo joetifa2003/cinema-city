@@ -1,18 +1,17 @@
-import React, { lazy, Suspense } from "react";
+import React, { Suspense } from "react";
 import Nav from "./components/Nav/Nav";
 import { Switch } from "react-router-dom";
 import { GuardProvider, GuardedRoute } from "react-router-guards";
 import { ls } from "./utility/LocalStorage";
 import { AdBlockDetectedWrapper } from "adblock-detect-react";
-import Loading from "./components/Loading/Loading";
 
-const Home = lazy(() => import("./pages/Home"));
-const Movie = lazy(() => import("./pages/Movie"));
-const Series = lazy(() => import("./pages/Series"));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
-const Auth = lazy(() => import("./pages/admin/Auth"));
-const AddMovie = lazy(() => import("./pages/admin/AddMovie"));
-const AddEpisode = lazy(() => import("./pages/admin/AddEpisode"));
+const Home = React.lazy(() => import("./pages/Home"));
+const Movie = React.lazy(() => import("./pages/Movie"));
+const Series = React.lazy(() => import("./pages/Series"));
+const Dashboard = React.lazy(() => import("./pages/admin/Dashboard"));
+const Auth = React.lazy(() => import("./pages/admin/Auth"));
+const AddMovie = React.lazy(() => import("./pages/admin/AddMovie"));
+const AddEpisode = React.lazy(() => import("./pages/admin/AddEpisode"));
 
 const adminAuth = (to: any, from: any, next: any) => {
   if (to.meta.auth) {
@@ -29,32 +28,26 @@ const adminAuth = (to: any, from: any, next: any) => {
 const App = () => {
   return (
     <>
-      <Suspense
-        fallback={
-          <div className="w-full h-full bg-primary-shades-600">
-            <Loading color="white" className="h-full" />
-          </div>
-        }
-      >
-        <Nav />
-        <AdBlockDetectedWrapper>
-          <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full bg-opacity-75 bg-primary">
-            <div className="container">
-              <span
-                className="mx-auto mb-5 text-white iconify"
-                data-icon="simple-icons:adblock"
-                data-inline="false"
-                style={{
-                  fontSize: "15rem",
-                }}
-              ></span>
-              <div className="text-3xl font-bold text-center text-white">
-                يجب عليك تعطيل مانع الاعلانات - AdBlock حتى يمكنك التحميل و
-                المشاهدة مجاناً.
-              </div>
+      <Nav />
+      <AdBlockDetectedWrapper>
+        <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full bg-opacity-75 bg-primary">
+          <div className="container">
+            <span
+              className="mx-auto mb-5 text-white iconify"
+              data-icon="simple-icons:adblock"
+              data-inline="false"
+              style={{
+                fontSize: "15rem",
+              }}
+            ></span>
+            <div className="text-3xl font-bold text-center text-white">
+              يجب عليك تعطيل مانع الاعلانات - AdBlock حتى يمكنك التحميل و
+              المشاهدة مجاناً.
             </div>
           </div>
-        </AdBlockDetectedWrapper>
+        </div>
+      </AdBlockDetectedWrapper>
+      <Suspense fallback={<div className="w-full h-full bg-bg"></div>}>
         <GuardProvider guards={[adminAuth]}>
           <Switch>
             <GuardedRoute path="/" component={Home} exact />

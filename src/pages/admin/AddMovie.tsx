@@ -1,15 +1,14 @@
-import React, { lazy, useState } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
+import TextArea from "../../components/UI/TextArea";
+import TextBox from "../../components/UI/TextBox";
 import { db, fb, st } from "../../firebase";
+import MultiSelect from "react-multi-select-component";
 import { Type } from "../../models/MovieSeries";
+import Select from "react-select";
 import imageCompression from "browser-image-compression";
+import Loading from "../../components/Loading/Loading";
 const shortid = require("shortid");
-
-const TextBox = lazy(() => import("../../components/UI/TextBox"));
-const TextArea = lazy(() => import("../../components/UI/TextArea"));
-const Loading = lazy(() => import("../../components/Loading/Loading"));
-const Select = lazy(() => import("react-select"));
-const MultiSelect = lazy(() => import("react-multi-select-component"));
 
 const AddMovie = () => {
   const [name, setName] = useState("");
@@ -49,7 +48,6 @@ const AddMovie = () => {
     { label: "Egypt", value: "Egypt" },
     { label: "Turkey", value: "Turkey" },
     { label: "Japan", value: "Japan" },
-    { label: "Korea", value: "Korea" },
   ];
   const warningsOptions = [
     { label: "عائلي", value: "عائلي" },

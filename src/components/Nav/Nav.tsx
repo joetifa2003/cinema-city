@@ -1,8 +1,7 @@
-import React, { memo, lazy, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
-
-const DropDown = lazy(() => import("../UI/DropDown"));
+import DropDown from "../UI/DropDown";
 
 const Nav = () => {
   const links = [
@@ -167,4 +166,4 @@ const Nav = () => {
   );
 };
 
-export default memo(Nav);
+export default React.memo(Nav);
