@@ -51,6 +51,7 @@ const DisplayInfo = ({
                 {
                   name: "البلد",
                   value: country,
+                  vicon: `twemoji:flag-for-flag-${country.toLowerCase()}`,
                 },
                 {
                   name: "المده",
@@ -61,7 +62,7 @@ const DisplayInfo = ({
                   name: "IMDB",
                   value: imdb,
                   icon: "cib:imdb",
-                  vicon: "",
+                  vicon: "ant-design:star-filled",
                 },
               ].map((v, i) => (
                 <>
@@ -84,6 +85,10 @@ const DisplayInfo = ({
                             className="ms-2 iconify"
                             data-icon={v.vicon}
                             data-inline="false"
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                            }}
                           ></span>
                         </div>
                       </td>
@@ -91,38 +96,52 @@ const DisplayInfo = ({
                   ) : null}
                 </>
               ))}
+              <tr>
+                <th scope="row" className="border-white">
+                  <div className="flex items-center">
+                    <div>النوع</div>
+                  </div>
+                </th>
+                <td className="border-white">
+                  <div className="flex items-center">
+                    <div className="c-gap-wrapper">
+                      <div className="flex flex-wrap c-gap-padding c-gap-2">
+                        {categories?.map((category, index) => (
+                          <div key={index}>
+                            <div className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-800">
+                              {category}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-white">
+                  <div className="flex items-center">
+                    <div>التصنيف</div>
+                  </div>
+                </th>
+                <td className="border-white">
+                  <div className="flex items-center">
+                    <div className="c-gap-wrapper">
+                      <div className="flex flex-wrap c-gap-padding c-gap-2">
+                        {warnings?.map((warning, index) => (
+                          <div key={index}>
+                            <div className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full">
+                              {warning}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
-          <div>
-            <div className="mb-5">
-              <div className="mb-2 text-xl font-bold text-white">النوع</div>
-              <div className="c-gap-wrapper">
-                <div className="flex flex-wrap c-gap-padding c-gap-2">
-                  {categories?.map((category, index) => (
-                    <div key={index}>
-                      <div className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-700">
-                        {category}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="mb-2 text-xl font-bold text-white">التصنيف</div>
-              <div className="c-gap-wrapper">
-                <div className="flex flex-wrap c-gap-padding c-gap-2">
-                  {warnings?.map((warning, index) => (
-                    <div key={index}>
-                      <div className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full">
-                        {warning}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
