@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useRequest } from "ahooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";

@@ -29,6 +29,7 @@ const adminAuth = (to: any, from: any, next: any) => {
 const App = () => {
   return (
     <>
+      <Nav />
       <Suspense
         fallback={
           <div className="w-full h-full bg-primary-shades-600">
@@ -36,7 +37,6 @@ const App = () => {
           </div>
         }
       >
-        <Nav />
         <AdBlockDetectedWrapper>
           <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full bg-opacity-75 bg-primary">
             <div className="container">

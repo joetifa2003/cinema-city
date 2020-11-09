@@ -77,6 +77,10 @@ const DisplayInfo = ({
                             className="iconify ms-2"
                             data-icon={v.icon}
                             data-inline="false"
+                            style={{
+                              width: "25px",
+                              height: "25px",
+                            }}
                           ></span>
                         </div>
                       </th>
