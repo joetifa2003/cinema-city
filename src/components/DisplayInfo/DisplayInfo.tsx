@@ -51,7 +51,9 @@ const DisplayInfo = ({
                 {
                   name: "البلد",
                   value: country,
-                  vicon: `twemoji:flag-for-flag-${country.toLowerCase()}`,
+                  vicon: `twemoji:flag-for-flag-${country
+                    .toLowerCase()
+                    .replace("korea", "south-korea")}`,
                 },
                 {
                   name: "المده",
