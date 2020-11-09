@@ -15,7 +15,7 @@ const DropDown = ({
 }) => {
   const [mainHoverd, setMainHoverd] = useState(false);
   const [contentHoverd, setContetnHoverd] = useState(false);
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState();
   const ref: any = useRef(null);
 
   const hovered = mainHoverd || contentHoverd;
@@ -29,17 +29,21 @@ const DropDown = ({
     height: height || "",
   }));
 
-  setDropDownSpring({
-    height: hovered && height ? height : (0 as any),
-  });
+  if (height) {
+    setDropDownSpring({
+      height: hovered && height ? height : (0 as any),
+    });
+  }
 
   return (
-    <div className={`relative ${className}`}>
+    <div
+      className={`relative ${className}`}
+      onClick={() => setMainHoverd(true)}
+    >
       <button
         className="flex items-center justify-center w-full p-2 font-bold hover:bg-purple-900"
         onMouseOver={() => setMainHoverd(true)}
         onMouseOut={() => setMainHoverd(false)}
-        onClick={() => setMainHoverd((prev) => !prev)}
       >
         {name}
         <span
