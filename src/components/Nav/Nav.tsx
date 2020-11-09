@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import DropDown from "../UI/DropDown";
@@ -147,6 +147,7 @@ const Nav = () => {
         >
           {links.map((v, i) => (
             <DropDown
+              key={i}
               name={v.name}
               options={v.options}
               float={false}
@@ -157,7 +158,12 @@ const Nav = () => {
         <div className="hidden md:table c-gap-wrapper">
           <div className="flex h-full c-gap c-gap-x-2">
             {links.map((v, i) => (
-              <DropDown name={v.name} options={v.options} float={true} />
+              <DropDown
+                key={i}
+                name={v.name}
+                options={v.options}
+                float={true}
+              />
             ))}
           </div>
         </div>
@@ -166,4 +172,4 @@ const Nav = () => {
   );
 };
 
-export default React.memo(Nav);
+export default memo(Nav);

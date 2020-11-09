@@ -15,7 +15,7 @@ const DropDown = ({
 }) => {
   const [mainHoverd, setMainHoverd] = useState(false);
   const [contentHoverd, setContetnHoverd] = useState(false);
-  const [height, setHeight] = useState();
+  const [height, setHeight] = useState(0);
   const ref: any = useRef(null);
 
   const hovered = mainHoverd || contentHoverd;
@@ -30,7 +30,7 @@ const DropDown = ({
   }));
 
   setDropDownSpring({
-    height: hovered && height ? height : 0,
+    height: hovered && height ? height : (0 as any),
   });
 
   return (

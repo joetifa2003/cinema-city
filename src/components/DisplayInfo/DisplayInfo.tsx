@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Ratio from "react-ratio";
 
 interface PropTypes {
@@ -65,26 +65,27 @@ const DisplayInfo = ({
             ].map((v, i) => (
               <>
                 {v.value !== "undefined" && v.value !== "" ? (
-                  <>
-                    <div className="flex justify-between w-full text-lg font-bold md:w-64">
-                      <div className="flex items-center">
-                        <div>{v.name}</div>
-                        <span
-                          className="iconify ms-2"
-                          data-icon={v.icon}
-                          data-inline="false"
-                        ></span>
-                      </div>
-                      <div className="flex items-center">
-                        <div>{v.value}</div>
-                        <span
-                          className="ms-2 iconify"
-                          data-icon={v.vicon}
-                          data-inline="false"
-                        ></span>
-                      </div>
+                  <div
+                    className="flex justify-between w-full text-lg font-bold md:w-64"
+                    key={i}
+                  >
+                    <div className="flex items-center">
+                      <div>{v.name}</div>
+                      <span
+                        className="iconify ms-2"
+                        data-icon={v.icon}
+                        data-inline="false"
+                      ></span>
                     </div>
-                  </>
+                    <div className="flex items-center">
+                      <div>{v.value}</div>
+                      <span
+                        className="ms-2 iconify"
+                        data-icon={v.vicon}
+                        data-inline="false"
+                      ></span>
+                    </div>
+                  </div>
                 ) : null}
               </>
             ))}
@@ -95,11 +96,8 @@ const DisplayInfo = ({
               <div className="c-gap-wrapper">
                 <div className="flex flex-wrap c-gap-padding c-gap-2">
                   {categories?.map((category, index) => (
-                    <div>
-                      <div
-                        key={index}
-                        className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-700"
-                      >
+                    <div key={index}>
+                      <div className="px-3 py-2 text-base font-bold text-white rounded-full bg-primary-shades-700">
                         {category}
                       </div>
                     </div>
@@ -112,11 +110,8 @@ const DisplayInfo = ({
               <div className="c-gap-wrapper">
                 <div className="flex flex-wrap c-gap-padding c-gap-2">
                   {warnings?.map((warning, index) => (
-                    <div>
-                      <div
-                        key={index}
-                        className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full"
-                      >
+                    <div key={index}>
+                      <div className="px-3 py-2 text-base font-bold text-white bg-red-700 rounded-full">
                         {warning}
                       </div>
                     </div>
@@ -131,4 +126,4 @@ const DisplayInfo = ({
   );
 };
 
-export default React.memo(DisplayInfo);
+export default memo(DisplayInfo);

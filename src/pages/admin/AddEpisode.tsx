@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { db, fb } from "../../firebase";
-import AsyncSelect from "react-select/async";
-import TextBox from "../../components/UI/TextBox";
 import Swal from "sweetalert2";
 import MovieSeries, { Type } from "../../models/MovieSeries";
+
+const AsyncSelect = lazy(() => import("react-select/async"));
+const TextBox = lazy(() => import("../../components/UI/TextBox"));
 
 const AddEpisode = () => {
   const [series, setSeries] = useState<MovieSeries>();
@@ -60,7 +61,7 @@ const AddEpisode = () => {
           onChange={(value: any) => {
             setSeries(value.value);
           }}
-          onInputChange={(value) => {
+          onInputChange={(value: any) => {
             setValue(value);
             return value;
           }}
