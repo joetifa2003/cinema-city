@@ -1,5 +1,5 @@
 import React from "react";
-import { hydrate, render } from "react-dom";
+import { render } from "react-dom";
 import "reflect-metadata";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
@@ -15,8 +15,4 @@ const app = (
 
 const root = document.getElementById("root");
 
-if (root?.hasChildNodes()) {
-  hydrate(app, root);
-} else {
-  render(app, root);
-}
+render(app, root);
