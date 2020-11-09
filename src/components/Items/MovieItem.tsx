@@ -13,6 +13,7 @@ const MovieItem = ({
   warnings,
   id,
   type,
+  country,
 }: {
   img: string;
   name: string;
@@ -21,12 +22,13 @@ const MovieItem = ({
   warnings: string[];
   id: string;
   type: Type;
+  country: string;
 }) => {
   const history = useHistory();
 
   return (
     <div
-      className="relative w-full h-full transition-all duration-500 ease-in-out transform cursor-pointer hover:scale-105 group"
+      className="relative w-full h-full overflow-hidden transition-all duration-500 ease-in-out transform cursor-pointer hover:scale-105 group"
       onClick={() => {
         if (type === Type.MOVIE) return history.push(`/movie/${id}`);
         history.push(`/series/${id}`);
@@ -46,7 +48,7 @@ const MovieItem = ({
             />
           </Zoom>
         </Ratio>
-        <div className="absolute top-0 left-0 z-10 w-full h-full p-5 bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
+        <div className="absolute top-0 left-0 z-10 w-full h-full p-5 overflow-y-auto bg-opacity-75 rounded-lg bg-primary-shades-600 clip">
           <div className="mb-5">
             <div className="mb-2 font-bold text-white">النوع</div>
             <div className="c-gap-wrapper">
@@ -82,6 +84,9 @@ const MovieItem = ({
       <div className="absolute top-0 right-0 w-20 px-2 py-2 text-sm font-bold text-white rounded-l-full bg-primary">
         {type === Type.MOVIE ? "فيلم" : "مسلسل"}
       </div>
+      {/* <div className="absolute right-0 w-16 px-2 py-2 text-sm font-bold text-white rounded-l-full top-40 bg-primary">
+        {country}
+      </div> */}
 
       <div className="font-bold text-center">{`${name} (${year})`}</div>
     </div>

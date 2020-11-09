@@ -114,6 +114,9 @@ const Series = () => {
             </div>
             {currEpisode ? (
               <>
+                <div className="mb-5 text-3xl font-bold border-white">
+                  المسلسل حلقه {currEpisode.episode}
+                </div>
                 <VideoDisplay link={`${currEpisode?.link}`} />
                 <InfiniteScroll
                   className="overflow-x-hidden overflow-y-auto c-gap-wrapper bg-primary-shades-600"

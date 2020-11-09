@@ -38,58 +38,61 @@ const DisplayInfo = ({
         </Ratio>
       </div>
       <div className="flex flex-col w-full p-5 rounded-xl bg-primary-shades-600">
-        <div dir="auto" className="text-3xl font-bold">
+        <div dir="auto" className="mb-5 text-3xl font-bold">
           {name}
         </div>
         <p dir="auto" className="font-bold">
           {desc}
         </p>
-        <div className="flex flex-col justify-between pt-16 mt-auto lg:flex-row">
-          <div className="mb-5">
-            {[
-              {
-                name: "البلد",
-                value: country,
-              },
-              {
-                name: "المده",
-                value: length ? `دقيقه ${length}` : "",
-                icon: "bx:bx-time",
-              },
-              {
-                name: "IMDB",
-                value: imdb,
-                icon: "cib:imdb",
-                vicon: "",
-              },
-            ].map((v, i) => (
-              <>
-                {v.value !== "undefined" && v.value !== "" ? (
-                  <div
-                    className="flex justify-between w-full text-lg font-bold md:w-64"
-                    key={i}
-                  >
-                    <div className="flex items-center">
-                      <div>{v.name}</div>
-                      <span
-                        className="iconify ms-2"
-                        data-icon={v.icon}
-                        data-inline="false"
-                      ></span>
-                    </div>
-                    <div className="flex items-center">
-                      <div>{v.value}</div>
-                      <span
-                        className="ms-2 iconify"
-                        data-icon={v.vicon}
-                        data-inline="false"
-                      ></span>
-                    </div>
-                  </div>
-                ) : null}
-              </>
-            ))}
-          </div>
+        <div className="flex flex-col justify-between pt-16 mt-auto">
+          <table className="table mb-5 table-bordered table-dark table-striped bg-primary-shades-600">
+            <tbody>
+              {[
+                {
+                  name: "البلد",
+                  value: country,
+                },
+                {
+                  name: "المده",
+                  value: length ? `دقيقه ${length}` : "",
+                  icon: "bx:bx-time",
+                },
+                {
+                  name: "IMDB",
+                  value: imdb,
+                  icon: "cib:imdb",
+                  vicon: "",
+                },
+              ].map((v, i) => (
+                <>
+                  {v.value !== "undefined" && v.value !== "" ? (
+                    <tr>
+                      <th scope="row" className="border-white">
+                        <div className="flex items-center">
+                          <div>{v.name}</div>
+                          <span
+                            className="iconify ms-2"
+                            data-icon={v.icon}
+                            data-inline="false"
+                          ></span>
+                        </div>
+                      </th>
+                      <td className="border-white">
+                        <div className="flex items-center">
+                          <div className="font-bold">{v.value}</div>
+                          <span
+                            className="ms-2 iconify"
+                            data-icon={v.vicon}
+                            data-inline="false"
+                          ></span>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : null}
+                </>
+              ))}
+            </tbody>
+          </table>
           <div>
             <div className="mb-5">
               <div className="mb-2 text-xl font-bold text-white">النوع</div>

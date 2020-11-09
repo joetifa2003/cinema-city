@@ -130,6 +130,7 @@ const Home = () => {
                       categories={item.categories}
                       warnings={item.warnings}
                       type={item.type}
+                      country={item.country}
                     />
                   </animated.div>
                 ))}

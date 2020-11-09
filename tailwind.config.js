@@ -361,6 +361,7 @@ module.exports = {
     }),
     inset: {
       0: "0",
+      40: "40px",
       auto: "auto",
       full: "100%",
     },
@@ -895,5 +896,6 @@ module.exports = {
     require("@tailwindcss/custom-forms"),
     require("tailwindcss-ripple")(),
     require("tailwindcss-rtl"),
+    require("tailwindcss-tables")(),
   ],
 };
