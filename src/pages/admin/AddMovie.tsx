@@ -25,6 +25,7 @@ const AddMovie = () => {
   const [warnings, setWarnings] = useState([]);
   const [type, setType] = useState(Type.MOVIE);
   const [loading, setLoading] = useState(false);
+  const [imdbID, setImdbID] = useState("");
   const categoriesOptions = [
     { value: "انمي", label: "انمي" },
     { value: "تركي", label: "تركي" },
@@ -99,15 +100,15 @@ const AddMovie = () => {
         name_query: getQueryArray(name.toLocaleLowerCase()),
         img: img_link,
         image_name: imageName,
-        year,
+        year: parseInt(year),
         desc,
-        server_link: serverLink,
-        download_link,
+        server_link: type === "movie" ? serverLink : "",
+        download_link: type === "movie" ? download_link : "",
         categories: categories.map((categorie: any) => categorie.value),
         warnings: warnings.map((warning: any) => warning.value),
         trailer,
         imdb: parseFloat(imdb),
-        length: parseInt(length),
+        length: type === "movie" ? parseInt(length) : "",
         country,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
         type,
@@ -124,6 +125,22 @@ const AddMovie = () => {
       setLoading(false);
       Swal.fire(`Error!`, `Error ${Object.values(error)}`, "error");
     }
+  };
+
+  const handleImdbGetData = async () => {
+    const req = await fetch(
+      `http://www.omdbapi.com/?apikey=15454ddc&i=${imdbID}&plot=full`
+    );
+    const data = await req.json();
+    console.log(data);
+
+    setType(data.Type);
+    setImdb(data.imdbRating);
+    setLength((data.Runtime as string).split(" ")[0]);
+    setDesc(data.Plot);
+    setCountry(data.Country);
+    setYear((data.Year as string).split("-")[0]);
+    setName(data.Title);
   };
 
   return (
@@ -144,11 +161,14 @@ const AddMovie = () => {
                 <TextBox
                   label="IMDB ID"
                   onChange={(event) => {
-                    setName(event.target.value);
+                    setImdbID(event.target.value);
                   }}
-                  value={name}
+                  value={imdbID}
                 />
-                <button className="w-full py-2 text-white bg-primary">
+                <button
+                  className="w-full py-2 text-white bg-primary"
+                  onClick={handleImdbGetData}
+                >
                   Get data
                 </button>
               </div>
@@ -167,15 +187,6 @@ const AddMovie = () => {
               />
             </div>
             <div className="w-full md:w-1/2">
-              <TextBox
-                label="Movie name"
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-                value={name}
-              />
-            </div>
-            <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Type</div>
               <div style={{ direction: "ltr" }}>
                 <Select
@@ -184,8 +195,18 @@ const AddMovie = () => {
                   onChange={(e: any) => {
                     setType(e.value ? e.value : "");
                   }}
+                  value={typeOptions.find((item) => item.value === type)}
                 />
               </div>
+            </div>
+            <div className="w-full md:w-1/2">
+              <TextBox
+                label="Movie name"
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+                value={name}
+              />
             </div>
             <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Country</div>
@@ -196,6 +217,7 @@ const AddMovie = () => {
                   onChange={(e: any) => {
                     setCountry(e.value ? e.value : "");
                   }}
+                  value={countryOptions.find((item) => item.value === country)}
                 />
               </div>
             </div>
@@ -207,6 +229,25 @@ const AddMovie = () => {
                 }}
                 value={year}
               />
+            </div>
+            <div className="w-full md:w-1/2">
+              <div className="mb-2 font-bold">Categories</div>
+              <div style={{ direction: "ltr" }}>
+                <MultiSelect
+                  labelledBy="Categories"
+                  hasSelectAll={false}
+                  options={categoriesOptions}
+                  value={categories}
+                  onChange={setCategories}
+                  overrideStrings={{
+                    selectSomeItems: "Select Movie categories",
+                    allItemsAreSelected: "All items are selected.",
+                    selectAll: "Select All",
+                    search: "Search",
+                    clearSearch: "Clear Search",
+                  }}
+                />
+              </div>
             </div>
             <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Warnings</div>
@@ -233,6 +274,7 @@ const AddMovie = () => {
                 onChange={(event) => {
                   setDesc(event.target.value);
                 }}
+                value={desc}
               />
             </div>
             <div className="w-full md:w-1/2">
@@ -283,25 +325,6 @@ const AddMovie = () => {
                 }}
                 value={trailer}
               />
-            </div>
-            <div className="w-full md:w-1/2">
-              <div className="mb-2 font-bold">Categories</div>
-              <div style={{ direction: "ltr" }}>
-                <MultiSelect
-                  labelledBy="Categories"
-                  hasSelectAll={false}
-                  options={categoriesOptions}
-                  value={categories}
-                  onChange={setCategories}
-                  overrideStrings={{
-                    selectSomeItems: "Select Movie categories",
-                    allItemsAreSelected: "All items are selected.",
-                    selectAll: "Select All",
-                    search: "Search",
-                    clearSearch: "Clear Search",
-                  }}
-                />
-              </div>
             </div>
           </div>
         </div>

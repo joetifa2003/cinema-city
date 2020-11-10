@@ -2,9 +2,11 @@ import React from "react";
 
 const TextArea = ({
   label,
+  value,
   onChange,
 }: {
   label: string;
+  value: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) => {
   return (
@@ -14,6 +16,8 @@ const TextArea = ({
         placeholder={label}
         className="w-full p-3 border-2 border-gray-300 rounded-lg"
         onChange={onChange}
+        value={value}
+        rows={10}
       />
     </div>
   );
