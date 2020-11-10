@@ -1,10 +1,9 @@
-import React, { lazy, useState } from "react";
+import React, { useState } from "react";
 import { db, fb } from "../../firebase";
 import Swal from "sweetalert2";
 import MovieSeries, { Type } from "../../models/MovieSeries";
-
-const AsyncSelect = lazy(() => import("react-select/async"));
-const TextBox = lazy(() => import("../../components/UI/TextBox"));
+import TextBox from "../../components/UI/TextBox";
+import AsyncSelect from "react-select/async";
 
 const AddEpisode = () => {
   const [series, setSeries] = useState<MovieSeries>();

@@ -1,15 +1,14 @@
-import React, { lazy, useState } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { db, fb, st } from "../../firebase";
 import { Type } from "../../models/MovieSeries";
 import imageCompression from "browser-image-compression";
+import Select from "react-select";
+import MultiSelect from "react-multi-select-component";
+import Loading from "../../components/Loading/Loading";
+import TextBox from "../../components/UI/TextBox";
+import TextArea from "../../components/UI/TextArea";
 const shortid = require("shortid");
-
-const TextBox = lazy(() => import("../../components/UI/TextBox"));
-const TextArea = lazy(() => import("../../components/UI/TextArea"));
-const Loading = lazy(() => import("../../components/Loading/Loading"));
-const Select = lazy(() => import("react-select"));
-const MultiSelect = lazy(() => import("react-multi-select-component"));
 
 const AddMovie = () => {
   const [name, setName] = useState("");
@@ -140,6 +139,20 @@ const AddMovie = () => {
         )}
         <div className="mb-8 c-gap-wrapper">
           <div className="flex flex-row flex-wrap c-gap-padding c-gap-8">
+            <div className="w-full md:w-1/2">
+              <div className="flex flex-col">
+                <TextBox
+                  label="IMDB ID"
+                  onChange={(event) => {
+                    setName(event.target.value);
+                  }}
+                  value={name}
+                />
+                <button className="w-full py-2 text-white bg-primary">
+                  Get data
+                </button>
+              </div>
+            </div>
             <div className="w-full md:w-1/2">
               <div className="mb-2 font-bold">Image</div>
               <input

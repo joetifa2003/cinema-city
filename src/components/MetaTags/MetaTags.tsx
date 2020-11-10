@@ -1,6 +1,6 @@
-import React, { memo, lazy } from "react";
+import React, { memo } from "react";
 
-const Helmet = lazy(() => import("react-helmet/es/Helmet"));
+import Helmet from "react-helmet";
 
 const MetaTags = ({
   title,

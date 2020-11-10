@@ -6,13 +6,25 @@ import { ls } from "./utility/LocalStorage";
 import { AdBlockDetectedWrapper } from "adblock-detect-react";
 import Loading from "./components/Loading/Loading";
 
-const Home = lazy(() => import("./pages/Home"));
-const Movie = lazy(() => import("./pages/Movie"));
-const Series = lazy(() => import("./pages/Series"));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
-const Auth = lazy(() => import("./pages/admin/Auth"));
-const AddMovie = lazy(() => import("./pages/admin/AddMovie"));
-const AddEpisode = lazy(() => import("./pages/admin/AddEpisode"));
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ "./pages/Home"));
+const Movie = lazy(
+  () => import(/* webpackChunkName: "Movie" */ "./pages/Movie")
+);
+const Series = lazy(
+  () => import(/* webpackChunkName: "Series" */ "./pages/Series")
+);
+const Dashboard = lazy(
+  () => import(/* webpackChunkName: "Dashboard" */ "./pages/admin/Dashboard")
+);
+const Auth = lazy(
+  () => import(/* webpackChunkName: "Auth" */ "./pages/admin/Auth")
+);
+const AddMovie = lazy(
+  () => import(/* webpackChunkName: "AddMovie" */ "./pages/admin/AddMovie")
+);
+const AddEpisode = lazy(
+  () => import(/* webpackChunkName: "AddEpisode" */ "./pages/admin/AddEpisode")
+);
 
 const adminAuth = (to: any, from: any, next: any) => {
   if (to.meta.auth) {

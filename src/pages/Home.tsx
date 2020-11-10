@@ -1,15 +1,14 @@
-import React, { lazy, useState } from "react";
+import React, { useState } from "react";
 import debounce from "lodash/debounce";
 import { db } from "../firebase";
 import { useTransition, animated } from "react-spring";
 import { MovieSeriesConverter } from "../models/MovieSeries";
 import Cover from "../assets/Cover.jpg";
 import { useRequest } from "ahooks";
-
-const Hero = lazy(() => import("../components/Hero/Hero"));
-const Loading = lazy(() => import("../components/Loading/Loading"));
-const MetaTags = lazy(() => import("../components/MetaTags/MetaTags"));
-const MovieItem = lazy(() => import("../components/Items/MovieItem"));
+import MetaTags from "../components/MetaTags/MetaTags";
+import Hero from "../components/Hero/Hero";
+import Loading from "../components/Loading/Loading";
+import MovieItem from "../components/Items/MovieItem";
 
 const Home = () => {
   const [searchString, setSearchString] = useState("");

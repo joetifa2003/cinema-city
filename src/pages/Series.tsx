@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRequest } from "ahooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
@@ -7,13 +7,10 @@ import Episode from "../models/Episode";
 import { Type } from "../models/MovieSeries";
 import { SeriesConverter } from "../models/SeriesClass";
 import { FacebookProvider, Comments } from "react-facebook";
-
-const DisplayInfo = lazy(() => import("../components/DisplayInfo/DisplayInfo"));
-const Loading = lazy(() => import("../components/Loading/Loading"));
-const MetaTags = lazy(() => import("../components/MetaTags/MetaTags"));
-const VideoDisplay = lazy(
-  () => import("../components/VideoDisplay/VideoDisplay")
-);
+import Loading from "../components/Loading/Loading";
+import MetaTags from "../components/MetaTags/MetaTags";
+import DisplayInfo from "../components/DisplayInfo/DisplayInfo";
+import VideoDisplay from "../components/VideoDisplay/VideoDisplay";
 
 interface ParamTypes {
   id: string;
