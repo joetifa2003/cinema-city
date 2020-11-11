@@ -129,7 +129,7 @@ const AddMovie = () => {
 
   const handleImdbGetData = async () => {
     const req = await fetch(
-      `http://www.omdbapi.com/?apikey=15454ddc&i=${imdbID}&plot=full`
+      `https://www.omdbapi.com/?apikey=15454ddc&i=${imdbID}&plot=full`
     );
     const data = await req.json();
     console.log(data);
