@@ -53,7 +53,8 @@ const DisplayInfo = ({
                   value: country,
                   vicon: `twemoji:flag-for-flag-${country
                     .toLowerCase()
-                    .replace("korea", "south-korea")}`,
+                    .replace("korea", "south-korea")
+                    .replace("usa", "united-states")}`,
                 },
                 {
                   name: "المده",

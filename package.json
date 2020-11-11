@@ -17,6 +17,7 @@
     "easy-peasy": "^4.0.1",
     "firebase": "^7.24.0",
     "lodash": "^4.17.20",
+    "nprogress": "^0.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-facebook": "^8.1.4",

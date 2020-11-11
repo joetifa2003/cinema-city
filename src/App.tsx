@@ -4,7 +4,7 @@ import { Switch } from "react-router-dom";
 import { GuardProvider, GuardedRoute } from "react-router-guards";
 import { ls } from "./utility/LocalStorage";
 import { AdBlockDetectedWrapper } from "adblock-detect-react";
-import Loading from "./components/Loading/Loading";
+import PageProgress from "./components/PageProgress/PageProgress";
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ "./pages/Home"));
 const Movie = lazy(
@@ -42,13 +42,7 @@ const App = () => {
   return (
     <>
       <Nav />
-      <Suspense
-        fallback={
-          <div className="w-full h-full bg-primary-shades-600">
-            <Loading color="white" className="h-full" />
-          </div>
-        }
-      >
+      <Suspense fallback={<PageProgress />}>
         <AdBlockDetectedWrapper>
           <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full bg-opacity-75 bg-primary">
             <div className="container">
