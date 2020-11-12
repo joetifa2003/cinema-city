@@ -10,7 +10,6 @@ const Auth = () => {
   const [password, setPassword] = useState("");
 
   const login = () => {
-    console.log(process.env.REACT_APP_PASSWORD);
     if (
       username === process.env.REACT_APP_USERNAME &&
       password === process.env.REACT_APP_PASSWORD
@@ -32,6 +31,7 @@ const Auth = () => {
             value={username}
           />
           <TextBox
+            password
             label="Password"
             onChange={(e) => {
               setPassword(e.target.value);

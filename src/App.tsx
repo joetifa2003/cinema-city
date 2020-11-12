@@ -1,10 +1,11 @@
 import React, { lazy, Suspense } from "react";
 import Nav from "./components/Nav/Nav";
 import { Switch } from "react-router-dom";
-import { GuardProvider, GuardedRoute } from "react-router-guards";
+import { GuardProvider } from "react-router-guards";
 import { ls } from "./utility/LocalStorage";
 import { AdBlockDetectedWrapper } from "adblock-detect-react";
 import PageProgress from "./components/PageProgress/PageProgress";
+import FancyRoute from "./components/Route/FancyRoute";
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ "./pages/Home"));
 const Movie = lazy(
@@ -25,6 +26,51 @@ const AddMovie = lazy(
 const AddEpisode = lazy(
   () => import(/* webpackChunkName: "AddEpisode" */ "./pages/admin/AddEpisode")
 );
+
+const routes = [
+  {
+    route: "/",
+    component: Home,
+    exact: true,
+    meta: {},
+  },
+  {
+    route: "/movie/:id",
+    component: Movie,
+    exact: false,
+    meta: {},
+  },
+  {
+    route: "/series/:id",
+    component: Series,
+    exact: false,
+    meta: {},
+  },
+  {
+    route: "/admin",
+    component: Dashboard,
+    exact: true,
+    meta: { auth: true },
+  },
+  {
+    route: "/admin/auth",
+    component: Auth,
+    exact: true,
+    meta: {},
+  },
+  {
+    route: "/admin/add",
+    component: AddMovie,
+    exact: true,
+    meta: { auth: true },
+  },
+  {
+    route: "/admin/add_episode",
+    component: AddEpisode,
+    exact: true,
+    meta: { auth: true },
+  },
+];
 
 const adminAuth = (to: any, from: any, next: any) => {
   if (to.meta.auth) {
@@ -61,31 +107,17 @@ const App = () => {
             </div>
           </div>
         </AdBlockDetectedWrapper>
-
         <GuardProvider guards={[adminAuth]}>
           <Switch>
-            <GuardedRoute path="/" component={Home} exact />
-            <GuardedRoute path="/movie/:id" component={Movie} />
-            <GuardedRoute path="/series/:id" component={Series} />
-            <GuardedRoute
-              path="/admin"
-              component={Dashboard}
-              exact
-              meta={{ auth: true }}
-            />
-            <GuardedRoute path="/admin/auth" component={Auth} exact />
-            <GuardedRoute
-              path="/admin/add"
-              component={AddMovie}
-              exact
-              meta={{ auth: true }}
-            />
-            <GuardedRoute
-              path="/admin/add_episode"
-              component={AddEpisode}
-              exact
-              meta={{ auth: true }}
-            />
+            {routes.map((route) => (
+              <FancyRoute
+                key={route.route}
+                path={route.route}
+                component={route.component}
+                exact={route.exact}
+                meta={route.meta}
+              />
+            ))}
           </Switch>
         </GuardProvider>
       </Suspense>
